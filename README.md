@@ -38,7 +38,7 @@ Full problem descriptions that simulate real LeetCode-style questions.
 
 1. **Clone or download the repository**
    ```bash
-   cd mango-tree
+   cd algoquest
    ```
 
 2. **Start a local server**
