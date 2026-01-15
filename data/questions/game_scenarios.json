@@ -1,0 +1,136 @@
+{
+  "metadata": {
+    "title": "Game Scenarios",
+    "description": "Full problem descriptions with hints for interactive game play",
+    "version": "1.0.0",
+    "scenarioCount": 15,
+    "difficultyLevels": ["easy", "medium", "hard"],
+    "pointRange": {
+      "easy": 10,
+      "medium": 20,
+      "hard": 30
+    }
+  },
+  "scenarios": [
+    {
+      "id": "scenario_1",
+      "problemDescription": "Given a sorted array of integers, find if a target value exists.",
+      "hints": ["Array is sorted", "Need to find single value"],
+      "correctAnswer": "binary_search",
+      "difficulty": "easy",
+      "points": 10
+    },
+    {
+      "id": "scenario_2",
+      "problemDescription": "Find the minimum number of moves for a knight to reach from position A to B on a chessboard.",
+      "hints": ["Grid traversal", "Minimum moves", "All moves have same cost"],
+      "correctAnswer": "bfs_matrix",
+      "difficulty": "medium",
+      "points": 20
+    },
+    {
+      "id": "scenario_3",
+      "problemDescription": "Given a string, find the length of the longest substring without repeating characters.",
+      "hints": ["Substring (contiguous)", "Condition: no repeats", "Longest"],
+      "correctAnswer": "sliding_window_variable",
+      "difficulty": "medium",
+      "points": 20
+    },
+    {
+      "id": "scenario_4",
+      "problemDescription": "Given a list of course prerequisites, find a valid order to take all courses.",
+      "hints": ["Dependencies", "Ordering", "Directed graph"],
+      "correctAnswer": "topological_sort",
+      "difficulty": "medium",
+      "points": 25
+    },
+    {
+      "id": "scenario_5",
+      "problemDescription": "Find all possible letter combinations that can be formed from a phone number.",
+      "hints": ["All combinations", "Multiple choices per digit"],
+      "correctAnswer": "backtracking",
+      "difficulty": "medium",
+      "points": 20
+    },
+    {
+      "id": "scenario_6",
+      "problemDescription": "Find the kth largest element in an unsorted array.",
+      "hints": ["Top k", "Don't need full sort"],
+      "correctAnswer": "heap_top_k",
+      "difficulty": "medium",
+      "points": 20
+    },
+    {
+      "id": "scenario_7",
+      "problemDescription": "Given a 2D grid of 1s (land) and 0s (water), count the number of islands.",
+      "hints": ["Connected regions", "Grid", "Counting components"],
+      "correctAnswer": "dfs_flood_fill",
+      "difficulty": "medium",
+      "points": 20
+    },
+    {
+      "id": "scenario_8",
+      "problemDescription": "Find the shortest transformation sequence from word A to word B, changing one letter at a time.",
+      "hints": ["Shortest path", "Each word is a node", "Unweighted"],
+      "correctAnswer": "bfs_graph",
+      "difficulty": "hard",
+      "points": 30
+    },
+    {
+      "id": "scenario_9",
+      "problemDescription": "Find the minimum number of coins needed to make a given amount.",
+      "hints": ["Optimization", "Can use same coin multiple times", "Subproblems overlap"],
+      "correctAnswer": "dp_knapsack",
+      "difficulty": "medium",
+      "points": 25
+    },
+    {
+      "id": "scenario_10",
+      "problemDescription": "Design a data structure that supports adding words and searching with wildcards.",
+      "hints": ["Multiple word lookups", "Prefix-based", "Search patterns"],
+      "correctAnswer": "trie",
+      "difficulty": "hard",
+      "points": 30
+    },
+    {
+      "id": "scenario_11",
+      "problemDescription": "Find the maximum sum of non-adjacent elements in an array.",
+      "hints": ["Maximum", "Choice: take or skip", "Depends on previous choices"],
+      "correctAnswer": "dp_linear",
+      "difficulty": "medium",
+      "points": 20
+    },
+    {
+      "id": "scenario_12",
+      "problemDescription": "Given an array of intervals, merge all overlapping intervals.",
+      "hints": ["Intervals", "Overlapping", "Merge"],
+      "correctAnswer": "interval_merge",
+      "difficulty": "medium",
+      "points": 20
+    },
+    {
+      "id": "scenario_13",
+      "problemDescription": "Find the next greater element for each element in the array.",
+      "hints": ["Next greater", "For each element", "Can be done in O(n)"],
+      "correctAnswer": "monotonic_stack",
+      "difficulty": "medium",
+      "points": 25
+    },
+    {
+      "id": "scenario_14",
+      "problemDescription": "Determine if a linked list has a cycle.",
+      "hints": ["Linked list", "Cycle detection", "O(1) space"],
+      "correctAnswer": "floyd_cycle",
+      "difficulty": "easy",
+      "points": 15
+    },
+    {
+      "id": "scenario_15",
+      "problemDescription": "Find the number of connected components in an undirected graph that changes dynamically.",
+      "hints": ["Components", "Dynamic", "Edges added over time"],
+      "correctAnswer": "union_find",
+      "difficulty": "medium",
+      "points": 25
+    }
+  ]
+}

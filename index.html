@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AlgoQuest - Master Algorithm Patterns</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Homepage -->
+    <section id="homepage" class="view active">
+      <div class="hero">
+        <div class="logo-container">
+          <div class="logo-icon">⚡</div>
+          <h1 class="logo-text">AlgoQuest</h1>
+        </div>
+        <p class="tagline">Master algorithm patterns through interactive challenges</p>
+      </div>
+      
+      <div class="menu-grid">
+        <button class="menu-card" data-game="signal">
+          <div class="card-icon">🎯</div>
+          <h2>Signal Quiz</h2>
+          <p>Identify the right algorithm from problem signals</p>
+          <div class="card-meta">
+            <span class="badge">30 Questions</span>
+            <span class="badge">Multiple Choice</span>
+          </div>
+        </button>
+        
+        <button class="menu-card" data-game="pattern">
+          <div class="card-icon">🃏</div>
+          <h2>Pattern Cards</h2>
+          <p>Learn algorithm signals with interactive flashcards</p>
+          <div class="card-meta">
+            <span class="badge">12 Patterns</span>
+            <span class="badge">Flashcards</span>
+          </div>
+        </button>
+        
+        <button class="menu-card" data-game="scenario">
+          <div class="card-icon">🧩</div>
+          <h2>Scenario Quiz</h2>
+          <p>Solve real problem descriptions and earn points</p>
+          <div class="card-meta">
+            <span class="badge">15 Scenarios</span>
+            <span class="badge">Points System</span>
+          </div>
+        </button>
+      </div>
+      
+      <div class="stats-bar">
+        <div class="stat">
+          <span class="stat-value" id="total-played">0</span>
+          <span class="stat-label">Games Played</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="best-streak">0</span>
+          <span class="stat-label">Best Streak</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="total-points">0</span>
+          <span class="stat-label">Total Points</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signal Quiz View -->
+    <section id="signal-quiz" class="view">
+      <header class="game-header">
+        <button class="back-btn" data-view="homepage">← Back</button>
+        <div class="game-title">
+          <span class="game-icon">🎯</span>
+          <span>Signal Quiz</span>
+        </div>
+        <div class="game-progress">
+          <span id="signal-current">1</span>/<span id="signal-total">30</span>
+        </div>
+      </header>
+      
+      <div class="quiz-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="signal-progress"></div>
+        </div>
+        
+        <div class="question-card">
+          <div class="question-label">What algorithm fits this signal?</div>
+          <div class="question-text" id="signal-question"></div>
+        </div>
+        
+        <div class="options-grid" id="signal-options"></div>
+        
+        <div class="feedback-card hidden" id="signal-feedback">
+          <div class="feedback-icon"></div>
+          <div class="feedback-text"></div>
+          <div class="feedback-explanation"></div>
+        </div>
+        
+        <button class="next-btn hidden" id="signal-next">Next Question →</button>
+      </div>
+      
+      <div class="score-display">
+        <div class="score-item">
+          <span class="score-label">Score</span>
+          <span class="score-value" id="signal-score">0</span>
+        </div>
+        <div class="score-item">
+          <span class="score-label">Streak</span>
+          <span class="score-value" id="signal-streak">0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pattern Recognition (Flashcard) View -->
+    <section id="pattern-quiz" class="view">
+      <header class="game-header">
+        <button class="back-btn" data-view="homepage">← Back</button>
+        <div class="game-title">
+          <span class="game-icon">🃏</span>
+          <span>Pattern Cards</span>
+        </div>
+        <div class="game-progress">
+          <span id="pattern-current">1</span>/<span id="pattern-total">12</span>
+        </div>
+      </header>
+      
+      <div class="flashcard-container">
+        <div class="flashcard" id="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">
+              <div class="card-header">
+                <span class="card-type">Algorithm Pattern</span>
+              </div>
+              <h2 class="pattern-name" id="pattern-name"></h2>
+              <div class="flip-hint">Click to reveal signals →</div>
+            </div>
+            <div class="flashcard-back">
+              <div class="signals-section">
+                <h3>✅ Use When:</h3>
+                <ul class="signals-list" id="pattern-signals"></ul>
+              </div>
+              <div class="anti-signals-section">
+                <h3>❌ Avoid When:</h3>
+                <ul class="anti-signals-list" id="pattern-anti-signals"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flashcard-controls">
+          <button class="control-btn" id="pattern-prev" disabled>← Previous</button>
+          <button class="control-btn shuffle-btn" id="pattern-shuffle">🔀 Shuffle</button>
+          <button class="control-btn" id="pattern-next">Next →</button>
+        </div>
+        
+        <div class="card-dots" id="pattern-dots"></div>
+      </div>
+      
+      <div class="flashcard-instructions">
+        <p>💡 Click the card to flip • Use arrows to navigate • Learn all 12 patterns!</p>
+      </div>
+    </section>
+
+    <!-- Scenario Quiz View -->
+    <section id="scenario-quiz" class="view">
+      <header class="game-header">
+        <button class="back-btn" data-view="homepage">← Back</button>
+        <div class="game-title">
+          <span class="game-icon">🧩</span>
+          <span>Scenario Quiz</span>
+        </div>
+        <div class="game-progress">
+          <span id="scenario-current">1</span>/<span id="scenario-total">15</span>
+        </div>
+      </header>
+      
+      <div class="quiz-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="scenario-progress"></div>
+        </div>
+        
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <span class="difficulty-badge" id="scenario-difficulty">Medium</span>
+            <span class="points-badge" id="scenario-points">+20 pts</span>
+          </div>
+          <div class="scenario-problem" id="scenario-problem"></div>
+          <div class="scenario-hints collapsed">
+            <button class="hints-toggle" id="hints-toggle">
+              <span class="hints-label">💡 Hints</span>
+              <span class="hints-arrow">▼</span>
+            </button>
+            <div class="hints-content">
+              <div class="hints-list" id="scenario-hints"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="options-grid" id="scenario-options"></div>
+        
+        <div class="feedback-card hidden" id="scenario-feedback">
+          <div class="feedback-icon"></div>
+          <div class="feedback-text"></div>
+        </div>
+        
+        <button class="next-btn hidden" id="scenario-next">Next Scenario →</button>
+      </div>
+      
+      <div class="score-display scenario-score">
+        <div class="score-item">
+          <span class="score-label">Points</span>
+          <span class="score-value" id="scenario-score">0</span>
+        </div>
+        <div class="score-item">
+          <span class="score-label">Correct</span>
+          <span class="score-value" id="scenario-correct">0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results View -->
+    <section id="results" class="view">
+      <div class="results-container">
+        <div class="results-icon" id="results-icon">🏆</div>
+        <h2 class="results-title" id="results-title">Quiz Complete!</h2>
+        <div class="results-stats">
+          <div class="result-stat">
+            <span class="result-value" id="result-score">0</span>
+            <span class="result-label">Final Score</span>
+          </div>
+          <div class="result-stat">
+            <span class="result-value" id="result-correct">0</span>
+            <span class="result-label">Correct Answers</span>
+          </div>
+          <div class="result-stat">
+            <span class="result-value" id="result-percentage">0%</span>
+            <span class="result-label">Accuracy</span>
+          </div>
+        </div>
+        <div class="results-actions">
+          <button class="action-btn primary" id="play-again">Play Again</button>
+          <button class="action-btn secondary" data-view="homepage">Back to Menu</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>

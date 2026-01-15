@@ -1,0 +1,220 @@
+{
+  "metadata": {
+    "title": "Signal Questions",
+    "description": "Quiz questions that test algorithm selection based on problem signals",
+    "version": "1.0.0",
+    "questionCount": 30
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "signal": "Array is sorted, need to find a target value",
+      "correctAlgorithm": "binary_search",
+      "wrongOptions": ["linear_search_or_hash", "two_pointers_same", "dfs_tree"],
+      "explanation": "Sorted array + search = Binary Search for O(log n) time"
+    },
+    {
+      "id": "q2",
+      "signal": "Find shortest path in unweighted graph",
+      "correctAlgorithm": "bfs_graph",
+      "wrongOptions": ["dfs_graph", "dijkstra", "dp_grid"],
+      "explanation": "BFS guarantees shortest path in unweighted graphs by exploring level-by-level"
+    },
+    {
+      "id": "q3",
+      "signal": "Find shortest path in weighted graph with positive weights",
+      "correctAlgorithm": "dijkstra",
+      "wrongOptions": ["bfs_graph", "dfs_graph", "dp_linear"],
+      "explanation": "Dijkstra's algorithm handles weighted edges using a priority queue"
+    },
+    {
+      "id": "q4",
+      "signal": "Generate all possible combinations/permutations",
+      "correctAlgorithm": "backtracking",
+      "wrongOptions": ["dfs_tree", "dp_linear", "bfs_graph"],
+      "explanation": "Backtracking explores all possibilities by building candidates and backtracking on invalid ones"
+    },
+    {
+      "id": "q5",
+      "signal": "Find longest/shortest substring with a condition",
+      "correctAlgorithm": "sliding_window_variable",
+      "wrongOptions": ["prefix_sum", "binary_search", "two_pointers_opposite"],
+      "explanation": "Variable sliding window expands/contracts to find optimal substrings"
+    },
+    {
+      "id": "q6",
+      "signal": "Check if linked list has a cycle",
+      "correctAlgorithm": "floyd_cycle",
+      "wrongOptions": ["dfs_graph", "bfs_graph", "two_pointers_opposite"],
+      "explanation": "Floyd's cycle detection uses slow and fast pointers in O(1) space"
+    },
+    {
+      "id": "q7",
+      "signal": "Find number of connected components or islands in a grid",
+      "correctAlgorithm": "dfs_flood_fill",
+      "wrongOptions": ["bfs_matrix", "binary_search_matrix", "dp_grid"],
+      "explanation": "DFS flood fill explores connected regions marking visited cells"
+    },
+    {
+      "id": "q8",
+      "signal": "Process tree nodes level by level",
+      "correctAlgorithm": "bfs_tree",
+      "wrongOptions": ["dfs_tree", "binary_search", "topological_sort"],
+      "explanation": "BFS with queue naturally processes tree in level order"
+    },
+    {
+      "id": "q9",
+      "signal": "Find ordering of tasks with dependencies",
+      "correctAlgorithm": "topological_sort",
+      "wrongOptions": ["bfs_graph", "comparison_sort", "dfs_tree"],
+      "explanation": "Topological sort orders directed acyclic graph respecting dependencies"
+    },
+    {
+      "id": "q10",
+      "signal": "Merge overlapping intervals",
+      "correctAlgorithm": "interval_merge",
+      "wrongOptions": ["comparison_sort", "two_pointers_same", "greedy"],
+      "explanation": "Sort intervals by start, then merge overlapping ones sequentially"
+    },
+    {
+      "id": "q11",
+      "signal": "Find k largest/smallest elements",
+      "correctAlgorithm": "heap_top_k",
+      "wrongOptions": ["comparison_sort", "binary_search", "dp_linear"],
+      "explanation": "Heap of size k gives O(n log k) solution, better than full sort"
+    },
+    {
+      "id": "q12",
+      "signal": "Two numbers in sorted array that sum to target",
+      "correctAlgorithm": "two_pointers_opposite",
+      "wrongOptions": ["binary_search", "sliding_window_variable", "prefix_sum"],
+      "explanation": "Two pointers from both ends in sorted array finds pairs efficiently"
+    },
+    {
+      "id": "q13",
+      "signal": "Find subarray sum equals target (unsorted)",
+      "correctAlgorithm": "prefix_sum",
+      "wrongOptions": ["sliding_window_variable", "binary_search", "dp_linear"],
+      "explanation": "Prefix sum with hashmap finds subarrays summing to target in O(n)"
+    },
+    {
+      "id": "q14",
+      "signal": "Check if string is palindrome",
+      "correctAlgorithm": "two_pointers_opposite",
+      "wrongOptions": ["sliding_window_variable", "dfs_tree", "dp_linear"],
+      "explanation": "Compare characters from both ends moving toward center"
+    },
+    {
+      "id": "q15",
+      "signal": "Track connected components with dynamic edge additions",
+      "correctAlgorithm": "union_find",
+      "wrongOptions": ["dfs_components", "bfs_graph", "dp_linear"],
+      "explanation": "Union Find efficiently handles dynamic connectivity queries"
+    },
+    {
+      "id": "q16",
+      "signal": "Find longest common subsequence of two strings",
+      "correctAlgorithm": "dp_dual_sequence",
+      "wrongOptions": ["dp_linear", "sliding_window_variable", "two_pointers_same"],
+      "explanation": "Compare two sequences using 2D DP table"
+    },
+    {
+      "id": "q17",
+      "signal": "Minimum coins to make amount (unlimited coins)",
+      "correctAlgorithm": "dp_knapsack",
+      "wrongOptions": ["greedy", "backtracking", "bfs_graph"],
+      "explanation": "Unbounded knapsack DP considers all coin combinations"
+    },
+    {
+      "id": "q18",
+      "signal": "Count unique paths in grid from top-left to bottom-right",
+      "correctAlgorithm": "dp_grid",
+      "wrongOptions": ["bfs_matrix", "dfs_flood_fill", "backtracking"],
+      "explanation": "Grid DP accumulates path counts from adjacent cells"
+    },
+    {
+      "id": "q19",
+      "signal": "Find next greater element for each array element",
+      "correctAlgorithm": "monotonic_stack",
+      "wrongOptions": ["heap_top_k", "binary_search", "two_pointers_same"],
+      "explanation": "Monotonic stack tracks candidates for next greater in O(n)"
+    },
+    {
+      "id": "q20",
+      "signal": "Implement autocomplete with prefix matching",
+      "correctAlgorithm": "trie",
+      "wrongOptions": ["binary_search", "heap_top_k", "dfs_tree"],
+      "explanation": "Trie stores strings as tree paths for efficient prefix operations"
+    },
+    {
+      "id": "q21",
+      "signal": "Remove duplicates from sorted array in-place",
+      "correctAlgorithm": "two_pointers_same",
+      "wrongOptions": ["two_pointers_opposite", "binary_search", "sliding_window_variable"],
+      "explanation": "Two pointers moving same direction - one for reading, one for writing"
+    },
+    {
+      "id": "q22",
+      "signal": "Find maximum depth of binary tree",
+      "correctAlgorithm": "dfs_tree",
+      "wrongOptions": ["bfs_tree", "binary_search", "dp_tree"],
+      "explanation": "DFS recursively computes max depth of left and right subtrees"
+    },
+    {
+      "id": "q23",
+      "signal": "Word transformation (change one letter at a time)",
+      "correctAlgorithm": "bfs_graph",
+      "wrongOptions": ["dfs_graph", "trie", "dp_dual_sequence"],
+      "explanation": "BFS finds shortest transformation path between words"
+    },
+    {
+      "id": "q24",
+      "signal": "Validate if binary search tree",
+      "correctAlgorithm": "dfs_tree",
+      "wrongOptions": ["bfs_tree", "binary_search", "comparison_sort"],
+      "explanation": "DFS checks BST property with min/max bounds at each node"
+    },
+    {
+      "id": "q25",
+      "signal": "Find all anagrams in string (fixed pattern length)",
+      "correctAlgorithm": "sliding_window_fixed",
+      "wrongOptions": ["sliding_window_variable", "backtracking", "trie"],
+      "explanation": "Fixed-size sliding window matches character frequency of pattern"
+    },
+    {
+      "id": "q26",
+      "signal": "Design LRU Cache with O(1) get and put",
+      "correctAlgorithm": "cache_design",
+      "wrongOptions": ["heap_top_k", "trie", "union_find"],
+      "explanation": "Hashmap + doubly linked list gives O(1) access and eviction"
+    },
+    {
+      "id": "q27",
+      "signal": "Find minimum number of meeting rooms needed",
+      "correctAlgorithm": "interval_heap",
+      "wrongOptions": ["interval_merge", "comparison_sort", "greedy"],
+      "explanation": "Sort by start, use min-heap to track room end times"
+    },
+    {
+      "id": "q28",
+      "signal": "House robber - cannot rob adjacent houses",
+      "correctAlgorithm": "dp_linear",
+      "wrongOptions": ["greedy", "backtracking", "sliding_window_variable"],
+      "explanation": "Linear DP: dp[i] = max(dp[i-1], dp[i-2] + nums[i])"
+    },
+    {
+      "id": "q29",
+      "signal": "Search in rotated sorted array",
+      "correctAlgorithm": "binary_search_rotated",
+      "wrongOptions": ["linear_search_or_hash", "two_pointers_opposite", "binary_search"],
+      "explanation": "Modified binary search handles rotation by checking which half is sorted"
+    },
+    {
+      "id": "q30",
+      "signal": "Detect cycle in directed graph",
+      "correctAlgorithm": "dfs_cycle_directed",
+      "wrongOptions": ["union_find_cycle", "bfs_graph", "floyd_cycle"],
+      "explanation": "DFS with 3-color marking detects back edges in directed graphs"
+    }
+  ]
+}

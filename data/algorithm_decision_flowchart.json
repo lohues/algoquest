@@ -1,0 +1,717 @@
+{
+  "metadata": {
+    "title": "LeetCode Algorithm Decision Flowchart",
+    "source": "https://algo.monster/flowchart",
+    "description": "A decision tree to systematically select the right algorithm pattern for solving coding interview problems",
+    "version": "1.0.0",
+    "lastUpdated": "2026-01-15"
+  },
+  "decisionTree": {
+    "root": {
+      "id": "start",
+      "question": "What is the primary data structure or problem type?",
+      "options": [
+        { "label": "Array/String", "next": "array_string" },
+        { "label": "Tree", "next": "tree" },
+        { "label": "Graph", "next": "graph" },
+        { "label": "Linked List", "next": "linked_list" },
+        { "label": "Matrix/Grid", "next": "matrix" },
+        { "label": "Intervals", "next": "intervals" },
+        { "label": "Design Problem", "next": "design" }
+      ]
+    },
+    "nodes": {
+      "array_string": {
+        "id": "array_string",
+        "question": "What are you trying to find or do?",
+        "options": [
+          { "label": "Find target/search", "next": "array_search" },
+          { "label": "Subarray/substring with condition", "next": "subarray_condition" },
+          { "label": "Generate combinations/permutations", "next": "backtracking" },
+          { "label": "Optimize (max/min)", "next": "array_optimize" },
+          { "label": "Two elements with condition", "next": "two_pointers_decision" },
+          { "label": "Rearrange/sort", "next": "sorting_decision" }
+        ]
+      },
+      "array_search": {
+        "id": "array_search",
+        "question": "Is the array sorted or can be treated as sorted?",
+        "options": [
+          { "label": "Yes, sorted", "next": "binary_search" },
+          { "label": "Rotated sorted array", "next": "binary_search_rotated" },
+          { "label": "No, unsorted", "next": "linear_search_or_hash" }
+        ]
+      },
+      "subarray_condition": {
+        "id": "subarray_condition",
+        "question": "What type of subarray condition?",
+        "options": [
+          { "label": "Fixed size window", "next": "sliding_window_fixed" },
+          { "label": "Variable size (longest/shortest)", "next": "sliding_window_variable" },
+          { "label": "Sum equals target", "next": "prefix_sum" },
+          { "label": "Contains specific elements", "next": "sliding_window_variable" }
+        ]
+      },
+      "array_optimize": {
+        "id": "array_optimize",
+        "question": "Does the optimal solution have overlapping subproblems?",
+        "options": [
+          { "label": "Yes, subproblems overlap", "next": "dynamic_programming_decision" },
+          { "label": "No, greedy choice works", "next": "greedy" },
+          { "label": "Need to try all possibilities", "next": "backtracking" }
+        ]
+      },
+      "two_pointers_decision": {
+        "id": "two_pointers_decision",
+        "question": "How should the pointers move?",
+        "options": [
+          { "label": "From both ends toward center", "next": "two_pointers_opposite" },
+          { "label": "Same direction (fast/slow)", "next": "two_pointers_same" },
+          { "label": "Maintain a window", "next": "sliding_window_variable" }
+        ]
+      },
+      "tree": {
+        "id": "tree",
+        "question": "What type of tree operation?",
+        "options": [
+          { "label": "Traverse/search", "next": "tree_traversal" },
+          { "label": "Find depth/height/path", "next": "dfs_tree" },
+          { "label": "Level-by-level processing", "next": "bfs_tree" },
+          { "label": "BST operations", "next": "bst_operations" },
+          { "label": "Construct/serialize tree", "next": "tree_construction" }
+        ]
+      },
+      "tree_traversal": {
+        "id": "tree_traversal",
+        "question": "Do you need level information or process by levels?",
+        "options": [
+          { "label": "Yes, need level info", "next": "bfs_tree" },
+          { "label": "No, just traverse all nodes", "next": "dfs_tree" }
+        ]
+      },
+      "graph": {
+        "id": "graph",
+        "question": "What is the graph problem type?",
+        "options": [
+          { "label": "Shortest path (unweighted)", "next": "bfs_graph" },
+          { "label": "Shortest path (weighted)", "next": "dijkstra" },
+          { "label": "Detect cycle", "next": "graph_cycle" },
+          { "label": "Connected components", "next": "union_find_or_dfs" },
+          { "label": "Ordering/dependencies", "next": "topological_sort" },
+          { "label": "All paths/explore all", "next": "dfs_graph" }
+        ]
+      },
+      "graph_cycle": {
+        "id": "graph_cycle",
+        "question": "Is the graph directed or undirected?",
+        "options": [
+          { "label": "Directed", "next": "dfs_cycle_directed" },
+          { "label": "Undirected", "next": "union_find_cycle" }
+        ]
+      },
+      "union_find_or_dfs": {
+        "id": "union_find_or_dfs",
+        "question": "Do components change dynamically?",
+        "options": [
+          { "label": "Yes, edges added over time", "next": "union_find" },
+          { "label": "No, static graph", "next": "dfs_components" }
+        ]
+      },
+      "matrix": {
+        "id": "matrix",
+        "question": "What are you doing with the matrix?",
+        "options": [
+          { "label": "Find regions/islands", "next": "matrix_traversal" },
+          { "label": "Shortest path in grid", "next": "bfs_matrix" },
+          { "label": "Search in sorted matrix", "next": "binary_search_matrix" },
+          { "label": "Path from corner to corner", "next": "dp_grid" }
+        ]
+      },
+      "matrix_traversal": {
+        "id": "matrix_traversal",
+        "question": "Flood fill / island counting type problem?",
+        "options": [
+          { "label": "Yes", "next": "dfs_flood_fill" },
+          { "label": "Need shortest distance", "next": "bfs_matrix" }
+        ]
+      },
+      "linked_list": {
+        "id": "linked_list",
+        "question": "What linked list operation?",
+        "options": [
+          { "label": "Detect cycle", "next": "floyd_cycle" },
+          { "label": "Find middle/nth from end", "next": "two_pointers_same" },
+          { "label": "Merge lists", "next": "merge_lists" },
+          { "label": "Reverse list", "next": "reverse_linked_list" }
+        ]
+      },
+      "intervals": {
+        "id": "intervals",
+        "question": "What interval operation?",
+        "options": [
+          { "label": "Merge overlapping", "next": "interval_merge" },
+          { "label": "Find conflicts/overlaps", "next": "interval_sweep" },
+          { "label": "Insert interval", "next": "interval_insert" },
+          { "label": "Meeting rooms type", "next": "interval_heap" }
+        ]
+      },
+      "design": {
+        "id": "design",
+        "question": "What type of design problem?",
+        "options": [
+          { "label": "Cache (LRU/LFU)", "next": "cache_design" },
+          { "label": "Iterator", "next": "iterator_design" },
+          { "label": "Data stream", "next": "stream_design" }
+        ]
+      },
+      "dynamic_programming_decision": {
+        "id": "dynamic_programming_decision",
+        "question": "What type of DP pattern?",
+        "options": [
+          { "label": "Linear sequence", "next": "dp_linear" },
+          { "label": "Two sequences", "next": "dp_dual_sequence" },
+          { "label": "Grid/matrix", "next": "dp_grid" },
+          { "label": "Knapsack/subset sum", "next": "dp_knapsack" },
+          { "label": "Interval", "next": "dp_interval" },
+          { "label": "Tree DP", "next": "dp_tree" }
+        ]
+      },
+      "sorting_decision": {
+        "id": "sorting_decision",
+        "question": "What sorting approach?",
+        "options": [
+          { "label": "Compare-based sort", "next": "comparison_sort" },
+          { "label": "Count/bucket sort possible", "next": "counting_sort" },
+          { "label": "Partial sort (top K)", "next": "heap_top_k" }
+        ]
+      }
+    }
+  },
+  "algorithms": {
+    "binary_search": {
+      "id": "binary_search",
+      "name": "Binary Search",
+      "category": "Search",
+      "timeComplexity": "O(log n)",
+      "spaceComplexity": "O(1)",
+      "description": "Search in sorted array by repeatedly dividing search space in half",
+      "keywords": ["sorted", "search", "find", "target", "log n"],
+      "exampleProblems": ["Binary Search", "Search Insert Position", "First Bad Version", "Find Peak Element"],
+      "template": "left, right = 0, len(arr) - 1\nwhile left <= right:\n    mid = (left + right) // 2\n    if condition(mid):\n        result = mid\n        right = mid - 1  # or left = mid + 1\n    else:\n        left = mid + 1  # or right = mid - 1"
+    },
+    "binary_search_rotated": {
+      "id": "binary_search_rotated",
+      "name": "Binary Search (Rotated Array)",
+      "category": "Search",
+      "timeComplexity": "O(log n)",
+      "spaceComplexity": "O(1)",
+      "description": "Binary search on a rotated sorted array",
+      "keywords": ["rotated", "sorted", "search", "pivot"],
+      "exampleProblems": ["Search in Rotated Sorted Array", "Find Minimum in Rotated Sorted Array"]
+    },
+    "linear_search_or_hash": {
+      "id": "linear_search_or_hash",
+      "name": "Linear Search / Hash Map",
+      "category": "Search",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(1) or O(n)",
+      "description": "Scan array linearly or use hash map for O(1) lookup",
+      "keywords": ["unsorted", "find", "lookup", "hash"],
+      "exampleProblems": ["Two Sum", "Contains Duplicate", "First Unique Character"]
+    },
+    "sliding_window_fixed": {
+      "id": "sliding_window_fixed",
+      "name": "Sliding Window (Fixed Size)",
+      "category": "Two Pointers",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(1) or O(k)",
+      "description": "Maintain a fixed-size window sliding through the array",
+      "keywords": ["subarray", "window", "fixed", "consecutive", "size k"],
+      "exampleProblems": ["Maximum Sum Subarray of Size K", "Find All Anagrams in a String"],
+      "template": "window_sum = sum(arr[:k])\nfor i in range(k, len(arr)):\n    window_sum += arr[i] - arr[i-k]\n    # process window"
+    },
+    "sliding_window_variable": {
+      "id": "sliding_window_variable",
+      "name": "Sliding Window (Variable Size)",
+      "category": "Two Pointers",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(1) or O(k)",
+      "description": "Expand/contract window to find longest/shortest valid subarray",
+      "keywords": ["longest", "shortest", "subarray", "substring", "at most", "at least"],
+      "exampleProblems": ["Longest Substring Without Repeating Characters", "Minimum Window Substring", "Longest Repeating Character Replacement"],
+      "template": "left = 0\nfor right in range(len(arr)):\n    # expand window\n    while invalid_condition:\n        # contract window\n        left += 1\n    # update result"
+    },
+    "prefix_sum": {
+      "id": "prefix_sum",
+      "name": "Prefix Sum",
+      "category": "Array",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(n)",
+      "description": "Precompute cumulative sums for range sum queries",
+      "keywords": ["sum", "range", "subarray sum", "cumulative"],
+      "exampleProblems": ["Subarray Sum Equals K", "Range Sum Query", "Product of Array Except Self"]
+    },
+    "two_pointers_opposite": {
+      "id": "two_pointers_opposite",
+      "name": "Two Pointers (Opposite Direction)",
+      "category": "Two Pointers",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(1)",
+      "description": "Two pointers starting from both ends moving toward center",
+      "keywords": ["sorted", "pair", "sum", "palindrome", "container"],
+      "exampleProblems": ["Two Sum II", "Valid Palindrome", "Container With Most Water", "3Sum"]
+    },
+    "two_pointers_same": {
+      "id": "two_pointers_same",
+      "name": "Two Pointers (Same Direction)",
+      "category": "Two Pointers",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(1)",
+      "description": "Fast and slow pointers moving in same direction",
+      "keywords": ["slow", "fast", "in-place", "remove", "middle"],
+      "exampleProblems": ["Remove Duplicates from Sorted Array", "Move Zeroes", "Middle of Linked List"]
+    },
+    "dfs_tree": {
+      "id": "dfs_tree",
+      "name": "DFS on Tree",
+      "category": "Tree",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(h) where h is height",
+      "description": "Depth-first traversal of tree using recursion",
+      "keywords": ["tree", "depth", "height", "path", "subtree", "ancestor"],
+      "exampleProblems": ["Maximum Depth of Binary Tree", "Path Sum", "Lowest Common Ancestor", "Invert Binary Tree"]
+    },
+    "bfs_tree": {
+      "id": "bfs_tree",
+      "name": "BFS on Tree",
+      "category": "Tree",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(w) where w is max width",
+      "description": "Level-order traversal using queue",
+      "keywords": ["level", "layer", "breadth", "right side", "zigzag"],
+      "exampleProblems": ["Binary Tree Level Order Traversal", "Binary Tree Right Side View", "Minimum Depth of Binary Tree"]
+    },
+    "bst_operations": {
+      "id": "bst_operations",
+      "name": "BST Operations",
+      "category": "Tree",
+      "timeComplexity": "O(h)",
+      "spaceComplexity": "O(h)",
+      "description": "Binary Search Tree specific operations",
+      "keywords": ["BST", "binary search tree", "inorder", "validate", "successor"],
+      "exampleProblems": ["Validate Binary Search Tree", "Kth Smallest Element in BST", "Insert into BST"]
+    },
+    "tree_construction": {
+      "id": "tree_construction",
+      "name": "Tree Construction",
+      "category": "Tree",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(n)",
+      "description": "Build tree from traversal orders or serialize/deserialize",
+      "keywords": ["construct", "build", "serialize", "deserialize", "preorder", "inorder"],
+      "exampleProblems": ["Construct Binary Tree from Preorder and Inorder", "Serialize and Deserialize Binary Tree"]
+    },
+    "bfs_graph": {
+      "id": "bfs_graph",
+      "name": "BFS on Graph",
+      "category": "Graph",
+      "timeComplexity": "O(V + E)",
+      "spaceComplexity": "O(V)",
+      "description": "Breadth-first search for shortest path in unweighted graph",
+      "keywords": ["shortest", "minimum steps", "unweighted", "distance", "level"],
+      "exampleProblems": ["Word Ladder", "Open the Lock", "Shortest Path in Binary Matrix", "Rotting Oranges"],
+      "template": "queue = deque([start])\nvisited = {start}\nwhile queue:\n    node = queue.popleft()\n    for neighbor in get_neighbors(node):\n        if neighbor not in visited:\n            visited.add(neighbor)\n            queue.append(neighbor)"
+    },
+    "dijkstra": {
+      "id": "dijkstra",
+      "name": "Dijkstra's Algorithm",
+      "category": "Graph",
+      "timeComplexity": "O((V + E) log V)",
+      "spaceComplexity": "O(V)",
+      "description": "Shortest path in weighted graph with non-negative edges",
+      "keywords": ["weighted", "shortest path", "minimum cost", "priority queue"],
+      "exampleProblems": ["Network Delay Time", "Cheapest Flights Within K Stops", "Path With Minimum Effort"]
+    },
+    "dfs_graph": {
+      "id": "dfs_graph",
+      "name": "DFS on Graph",
+      "category": "Graph",
+      "timeComplexity": "O(V + E)",
+      "spaceComplexity": "O(V)",
+      "description": "Depth-first search for exploring all paths or detecting properties",
+      "keywords": ["all paths", "explore", "backtrack", "cycle", "connected"],
+      "exampleProblems": ["All Paths From Source to Target", "Clone Graph", "Course Schedule"]
+    },
+    "dfs_cycle_directed": {
+      "id": "dfs_cycle_directed",
+      "name": "DFS Cycle Detection (Directed)",
+      "category": "Graph",
+      "timeComplexity": "O(V + E)",
+      "spaceComplexity": "O(V)",
+      "description": "Detect cycle in directed graph using DFS with coloring",
+      "keywords": ["cycle", "directed", "dependencies", "circular"],
+      "exampleProblems": ["Course Schedule", "Course Schedule II"]
+    },
+    "union_find": {
+      "id": "union_find",
+      "name": "Union Find (Disjoint Set)",
+      "category": "Graph",
+      "timeComplexity": "O(α(n)) per operation",
+      "spaceComplexity": "O(n)",
+      "description": "Track connected components with union and find operations",
+      "keywords": ["connected", "components", "union", "merge", "groups"],
+      "exampleProblems": ["Number of Connected Components", "Redundant Connection", "Accounts Merge"]
+    },
+    "union_find_cycle": {
+      "id": "union_find_cycle",
+      "name": "Union Find Cycle Detection",
+      "category": "Graph",
+      "timeComplexity": "O(E × α(V))",
+      "spaceComplexity": "O(V)",
+      "description": "Detect cycle in undirected graph using Union Find",
+      "keywords": ["cycle", "undirected", "redundant edge"],
+      "exampleProblems": ["Redundant Connection", "Graph Valid Tree"]
+    },
+    "dfs_components": {
+      "id": "dfs_components",
+      "name": "DFS Connected Components",
+      "category": "Graph",
+      "timeComplexity": "O(V + E)",
+      "spaceComplexity": "O(V)",
+      "description": "Find all connected components using DFS",
+      "keywords": ["components", "connected", "islands"],
+      "exampleProblems": ["Number of Islands", "Number of Provinces", "Number of Connected Components"]
+    },
+    "topological_sort": {
+      "id": "topological_sort",
+      "name": "Topological Sort",
+      "category": "Graph",
+      "timeComplexity": "O(V + E)",
+      "spaceComplexity": "O(V)",
+      "description": "Order nodes so all edges point in one direction",
+      "keywords": ["order", "dependencies", "prerequisites", "schedule", "DAG"],
+      "exampleProblems": ["Course Schedule II", "Alien Dictionary", "Task Scheduler"]
+    },
+    "bfs_matrix": {
+      "id": "bfs_matrix",
+      "name": "BFS on Matrix",
+      "category": "Matrix",
+      "timeComplexity": "O(m × n)",
+      "spaceComplexity": "O(m × n)",
+      "description": "BFS on 2D grid for shortest path problems",
+      "keywords": ["grid", "matrix", "shortest", "minimum moves", "4-directional"],
+      "exampleProblems": ["Shortest Path in Binary Matrix", "01 Matrix", "Rotting Oranges"]
+    },
+    "dfs_flood_fill": {
+      "id": "dfs_flood_fill",
+      "name": "DFS Flood Fill",
+      "category": "Matrix",
+      "timeComplexity": "O(m × n)",
+      "spaceComplexity": "O(m × n)",
+      "description": "DFS on matrix for connected region problems",
+      "keywords": ["island", "region", "flood fill", "connected", "area"],
+      "exampleProblems": ["Number of Islands", "Flood Fill", "Max Area of Island", "Surrounded Regions"]
+    },
+    "binary_search_matrix": {
+      "id": "binary_search_matrix",
+      "name": "Binary Search on Matrix",
+      "category": "Matrix",
+      "timeComplexity": "O(log(m×n)) or O(m + n)",
+      "spaceComplexity": "O(1)",
+      "description": "Search in sorted 2D matrix",
+      "keywords": ["sorted matrix", "search", "2D"],
+      "exampleProblems": ["Search a 2D Matrix", "Search a 2D Matrix II", "Kth Smallest Element in Sorted Matrix"]
+    },
+    "dp_grid": {
+      "id": "dp_grid",
+      "name": "Grid DP",
+      "category": "Dynamic Programming",
+      "timeComplexity": "O(m × n)",
+      "spaceComplexity": "O(m × n) or O(n)",
+      "description": "Dynamic programming on 2D grid",
+      "keywords": ["grid", "paths", "minimum", "maximum", "ways"],
+      "exampleProblems": ["Unique Paths", "Minimum Path Sum", "Maximal Square", "Dungeon Game"]
+    },
+    "backtracking": {
+      "id": "backtracking",
+      "name": "Backtracking",
+      "category": "Recursion",
+      "timeComplexity": "O(k^n) or O(n!)",
+      "spaceComplexity": "O(n)",
+      "description": "Generate all combinations/permutations by exploring and backtracking",
+      "keywords": ["all", "combinations", "permutations", "subsets", "generate", "valid"],
+      "exampleProblems": ["Subsets", "Permutations", "Combination Sum", "N-Queens", "Generate Parentheses"],
+      "template": "def backtrack(path, choices):\n    if is_solution(path):\n        result.append(path[:])\n        return\n    for choice in choices:\n        if is_valid(choice):\n            path.append(choice)\n            backtrack(path, remaining_choices)\n            path.pop()"
+    },
+    "greedy": {
+      "id": "greedy",
+      "name": "Greedy Algorithm",
+      "category": "Optimization",
+      "timeComplexity": "Varies",
+      "spaceComplexity": "Varies",
+      "description": "Make locally optimal choice at each step",
+      "keywords": ["optimal", "local choice", "activity", "interval", "jump"],
+      "exampleProblems": ["Jump Game", "Gas Station", "Task Scheduler", "Non-overlapping Intervals"]
+    },
+    "dp_linear": {
+      "id": "dp_linear",
+      "name": "Linear DP",
+      "category": "Dynamic Programming",
+      "timeComplexity": "O(n) or O(n²)",
+      "spaceComplexity": "O(n) or O(1)",
+      "description": "DP on linear sequence",
+      "keywords": ["sequence", "stairs", "rob", "maximum", "longest"],
+      "exampleProblems": ["Climbing Stairs", "House Robber", "Longest Increasing Subsequence", "Maximum Subarray"]
+    },
+    "dp_dual_sequence": {
+      "id": "dp_dual_sequence",
+      "name": "Dual Sequence DP",
+      "category": "Dynamic Programming",
+      "timeComplexity": "O(m × n)",
+      "spaceComplexity": "O(m × n) or O(n)",
+      "description": "DP comparing two sequences",
+      "keywords": ["two strings", "common", "edit", "subsequence", "match"],
+      "exampleProblems": ["Longest Common Subsequence", "Edit Distance", "Distinct Subsequences"]
+    },
+    "dp_knapsack": {
+      "id": "dp_knapsack",
+      "name": "Knapsack DP",
+      "category": "Dynamic Programming",
+      "timeComplexity": "O(n × W)",
+      "spaceComplexity": "O(W)",
+      "description": "Select items with constraints (weight/capacity)",
+      "keywords": ["capacity", "weight", "value", "subset sum", "target", "partition"],
+      "exampleProblems": ["Partition Equal Subset Sum", "Coin Change", "Target Sum", "0/1 Knapsack"]
+    },
+    "dp_interval": {
+      "id": "dp_interval",
+      "name": "Interval DP",
+      "category": "Dynamic Programming",
+      "timeComplexity": "O(n³)",
+      "spaceComplexity": "O(n²)",
+      "description": "DP on intervals of the input",
+      "keywords": ["interval", "burst", "merge", "palindrome"],
+      "exampleProblems": ["Burst Balloons", "Longest Palindromic Subsequence", "Palindromic Substrings"]
+    },
+    "dp_tree": {
+      "id": "dp_tree",
+      "name": "Tree DP",
+      "category": "Dynamic Programming",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(n)",
+      "description": "Dynamic programming on tree structure",
+      "keywords": ["tree", "rob", "path", "subtree"],
+      "exampleProblems": ["House Robber III", "Binary Tree Maximum Path Sum", "Diameter of Binary Tree"]
+    },
+    "floyd_cycle": {
+      "id": "floyd_cycle",
+      "name": "Floyd's Cycle Detection",
+      "category": "Linked List",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(1)",
+      "description": "Detect cycle using slow and fast pointers",
+      "keywords": ["cycle", "linked list", "slow", "fast", "tortoise", "hare"],
+      "exampleProblems": ["Linked List Cycle", "Linked List Cycle II", "Find the Duplicate Number"]
+    },
+    "merge_lists": {
+      "id": "merge_lists",
+      "name": "Merge Linked Lists",
+      "category": "Linked List",
+      "timeComplexity": "O(n + m) or O(n log k)",
+      "spaceComplexity": "O(1) or O(log k)",
+      "description": "Merge sorted linked lists",
+      "keywords": ["merge", "sorted", "lists"],
+      "exampleProblems": ["Merge Two Sorted Lists", "Merge K Sorted Lists"]
+    },
+    "reverse_linked_list": {
+      "id": "reverse_linked_list",
+      "name": "Reverse Linked List",
+      "category": "Linked List",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(1)",
+      "description": "Reverse linked list iteratively or recursively",
+      "keywords": ["reverse", "linked list", "in-place"],
+      "exampleProblems": ["Reverse Linked List", "Reverse Linked List II", "Reverse Nodes in k-Group"]
+    },
+    "interval_merge": {
+      "id": "interval_merge",
+      "name": "Interval Merge",
+      "category": "Intervals",
+      "timeComplexity": "O(n log n)",
+      "spaceComplexity": "O(n)",
+      "description": "Sort and merge overlapping intervals",
+      "keywords": ["merge", "overlap", "intervals"],
+      "exampleProblems": ["Merge Intervals", "Insert Interval"]
+    },
+    "interval_sweep": {
+      "id": "interval_sweep",
+      "name": "Line Sweep",
+      "category": "Intervals",
+      "timeComplexity": "O(n log n)",
+      "spaceComplexity": "O(n)",
+      "description": "Process interval start/end points in sorted order",
+      "keywords": ["sweep", "events", "start", "end", "overlap count"],
+      "exampleProblems": ["Meeting Rooms II", "My Calendar I", "The Skyline Problem"]
+    },
+    "interval_insert": {
+      "id": "interval_insert",
+      "name": "Interval Insert",
+      "category": "Intervals",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(n)",
+      "description": "Insert interval and merge if necessary",
+      "keywords": ["insert", "interval", "merge"],
+      "exampleProblems": ["Insert Interval"]
+    },
+    "interval_heap": {
+      "id": "interval_heap",
+      "name": "Interval with Heap",
+      "category": "Intervals",
+      "timeComplexity": "O(n log n)",
+      "spaceComplexity": "O(n)",
+      "description": "Use heap to track active intervals",
+      "keywords": ["meeting rooms", "overlap", "minimum", "heap"],
+      "exampleProblems": ["Meeting Rooms II", "Minimum Number of Arrows"]
+    },
+    "heap_top_k": {
+      "id": "heap_top_k",
+      "name": "Heap for Top K",
+      "category": "Heap",
+      "timeComplexity": "O(n log k)",
+      "spaceComplexity": "O(k)",
+      "description": "Use heap to find k largest/smallest elements",
+      "keywords": ["top", "kth", "largest", "smallest", "frequent"],
+      "exampleProblems": ["Kth Largest Element", "Top K Frequent Elements", "K Closest Points to Origin"]
+    },
+    "comparison_sort": {
+      "id": "comparison_sort",
+      "name": "Comparison Sort",
+      "category": "Sorting",
+      "timeComplexity": "O(n log n)",
+      "spaceComplexity": "O(n) or O(log n)",
+      "description": "Sort using comparisons (merge sort, quick sort)",
+      "keywords": ["sort", "order", "compare"],
+      "exampleProblems": ["Sort an Array", "Sort Colors"]
+    },
+    "counting_sort": {
+      "id": "counting_sort",
+      "name": "Counting/Bucket Sort",
+      "category": "Sorting",
+      "timeComplexity": "O(n + k)",
+      "spaceComplexity": "O(k)",
+      "description": "Sort using counting when range is limited",
+      "keywords": ["count", "frequency", "range", "limited"],
+      "exampleProblems": ["Sort Colors", "Top K Frequent Words"]
+    },
+    "cache_design": {
+      "id": "cache_design",
+      "name": "Cache Design",
+      "category": "Design",
+      "timeComplexity": "O(1) operations",
+      "spaceComplexity": "O(capacity)",
+      "description": "Design cache with eviction policy",
+      "keywords": ["cache", "LRU", "LFU", "evict", "capacity"],
+      "exampleProblems": ["LRU Cache", "LFU Cache"]
+    },
+    "iterator_design": {
+      "id": "iterator_design",
+      "name": "Iterator Design",
+      "category": "Design",
+      "timeComplexity": "Varies",
+      "spaceComplexity": "Varies",
+      "description": "Design custom iterator",
+      "keywords": ["iterator", "next", "hasNext", "flatten"],
+      "exampleProblems": ["Flatten Nested List Iterator", "Peeking Iterator", "BST Iterator"]
+    },
+    "stream_design": {
+      "id": "stream_design",
+      "name": "Data Stream Design",
+      "category": "Design",
+      "timeComplexity": "Varies",
+      "spaceComplexity": "Varies",
+      "description": "Process streaming data",
+      "keywords": ["stream", "online", "median", "moving average"],
+      "exampleProblems": ["Find Median from Data Stream", "Moving Average from Data Stream"]
+    },
+    "monotonic_stack": {
+      "id": "monotonic_stack",
+      "name": "Monotonic Stack",
+      "category": "Stack",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(n)",
+      "description": "Stack maintaining monotonic order for next greater/smaller",
+      "keywords": ["next greater", "next smaller", "span", "temperature"],
+      "exampleProblems": ["Daily Temperatures", "Next Greater Element", "Largest Rectangle in Histogram"]
+    },
+    "trie": {
+      "id": "trie",
+      "name": "Trie (Prefix Tree)",
+      "category": "Tree",
+      "timeComplexity": "O(m) per operation",
+      "spaceComplexity": "O(ALPHABET × m × n)",
+      "description": "Tree structure for prefix-based string operations",
+      "keywords": ["prefix", "autocomplete", "word search", "dictionary"],
+      "exampleProblems": ["Implement Trie", "Word Search II", "Design Search Autocomplete"]
+    }
+  },
+  "keywordMapping": {
+    "sorted": ["binary_search", "two_pointers_opposite"],
+    "shortest path": ["bfs_graph", "dijkstra", "bfs_matrix"],
+    "minimum steps": ["bfs_graph", "bfs_matrix"],
+    "all combinations": ["backtracking"],
+    "all permutations": ["backtracking"],
+    "subsets": ["backtracking"],
+    "longest substring": ["sliding_window_variable"],
+    "shortest substring": ["sliding_window_variable"],
+    "subarray sum": ["prefix_sum", "sliding_window_variable"],
+    "connected components": ["union_find", "dfs_components"],
+    "cycle detection": ["floyd_cycle", "dfs_cycle_directed", "union_find_cycle"],
+    "level order": ["bfs_tree"],
+    "tree depth": ["dfs_tree"],
+    "top k": ["heap_top_k"],
+    "kth largest": ["heap_top_k"],
+    "kth smallest": ["heap_top_k"],
+    "merge intervals": ["interval_merge"],
+    "meeting rooms": ["interval_heap", "interval_sweep"],
+    "number of islands": ["dfs_flood_fill"],
+    "word ladder": ["bfs_graph"],
+    "course schedule": ["topological_sort"],
+    "edit distance": ["dp_dual_sequence"],
+    "coin change": ["dp_knapsack"],
+    "house robber": ["dp_linear", "dp_tree"],
+    "climbing stairs": ["dp_linear"],
+    "palindrome": ["two_pointers_opposite", "dp_interval"],
+    "anagram": ["sliding_window_fixed"],
+    "parentheses": ["backtracking", "monotonic_stack"],
+    "prefix": ["trie", "prefix_sum"],
+    "LRU": ["cache_design"],
+    "next greater": ["monotonic_stack"]
+  },
+  "difficultyProgression": [
+    {
+      "level": 1,
+      "name": "Fundamentals",
+      "algorithms": ["binary_search", "two_pointers_opposite", "two_pointers_same", "linear_search_or_hash"]
+    },
+    {
+      "level": 2,
+      "name": "Intermediate",
+      "algorithms": ["sliding_window_fixed", "sliding_window_variable", "prefix_sum", "dfs_tree", "bfs_tree"]
+    },
+    {
+      "level": 3,
+      "name": "Graphs & DP Basics",
+      "algorithms": ["bfs_graph", "dfs_graph", "dfs_flood_fill", "dp_linear", "backtracking"]
+    },
+    {
+      "level": 4,
+      "name": "Advanced",
+      "algorithms": ["topological_sort", "union_find", "dp_dual_sequence", "dp_knapsack", "monotonic_stack"]
+    },
+    {
+      "level": 5,
+      "name": "Expert",
+      "algorithms": ["dijkstra", "dp_interval", "dp_tree", "trie", "interval_sweep"]
+    }
+  ]
+}

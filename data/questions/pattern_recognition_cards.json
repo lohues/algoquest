@@ -1,0 +1,187 @@
+{
+  "metadata": {
+    "title": "Pattern Recognition Cards",
+    "description": "Flashcard-style data showing signals and anti-signals for each algorithm pattern",
+    "version": "1.0.0",
+    "cardCount": 12
+  },
+  "cards": [
+    {
+      "id": "card_1",
+      "pattern": "Binary Search",
+      "signals": [
+        "Array is sorted",
+        "Search space can be halved",
+        "Find first/last occurrence",
+        "Find peak element",
+        "Minimize maximum / Maximize minimum"
+      ],
+      "antiSignals": [
+        "Array is unsorted and cannot be sorted",
+        "Need to find all occurrences",
+        "Need relationship between elements"
+      ]
+    },
+    {
+      "id": "card_2",
+      "pattern": "BFS",
+      "signals": [
+        "Shortest path in unweighted graph",
+        "Minimum number of steps/moves",
+        "Level-by-level processing",
+        "Multi-source spreading (rotting oranges)",
+        "Word transformation"
+      ],
+      "antiSignals": [
+        "Need to explore all paths",
+        "Weighted edges",
+        "Need specific path (not just length)"
+      ]
+    },
+    {
+      "id": "card_3",
+      "pattern": "DFS",
+      "signals": [
+        "Explore all paths",
+        "Tree traversal",
+        "Check if path exists",
+        "Detect cycles",
+        "Connected components"
+      ],
+      "antiSignals": [
+        "Need shortest path",
+        "Need level information"
+      ]
+    },
+    {
+      "id": "card_4",
+      "pattern": "Sliding Window",
+      "signals": [
+        "Contiguous subarray/substring",
+        "Longest/shortest with condition",
+        "Contains k distinct elements",
+        "Maximum sum of size k"
+      ],
+      "antiSignals": [
+        "Non-contiguous elements",
+        "Need all combinations"
+      ]
+    },
+    {
+      "id": "card_5",
+      "pattern": "Two Pointers",
+      "signals": [
+        "Sorted array",
+        "Find pair with condition",
+        "Palindrome check",
+        "In-place modification",
+        "Merge sorted arrays"
+      ],
+      "antiSignals": [
+        "Unsorted data requiring all comparisons",
+        "Need to maintain order"
+      ]
+    },
+    {
+      "id": "card_6",
+      "pattern": "Dynamic Programming",
+      "signals": [
+        "Optimal substructure",
+        "Overlapping subproblems",
+        "Count ways",
+        "Minimum/maximum",
+        "Can solve recursively"
+      ],
+      "antiSignals": [
+        "Greedy choice always works",
+        "No repeated subproblems"
+      ]
+    },
+    {
+      "id": "card_7",
+      "pattern": "Backtracking",
+      "signals": [
+        "Generate all combinations/permutations",
+        "Subsets",
+        "Constraint satisfaction",
+        "N-Queens, Sudoku",
+        "All valid parentheses"
+      ],
+      "antiSignals": [
+        "Only need count (use DP)",
+        "Greedy solution exists"
+      ]
+    },
+    {
+      "id": "card_8",
+      "pattern": "Union Find",
+      "signals": [
+        "Connected components",
+        "Dynamic connectivity",
+        "Cycle in undirected graph",
+        "Grouping elements"
+      ],
+      "antiSignals": [
+        "Need path between nodes",
+        "Directed graph"
+      ]
+    },
+    {
+      "id": "card_9",
+      "pattern": "Topological Sort",
+      "signals": [
+        "Dependencies/prerequisites",
+        "Task ordering",
+        "Directed acyclic graph",
+        "Course schedule"
+      ],
+      "antiSignals": [
+        "Graph has cycles",
+        "No ordering required"
+      ]
+    },
+    {
+      "id": "card_10",
+      "pattern": "Heap / Priority Queue",
+      "signals": [
+        "Top K elements",
+        "Kth largest/smallest",
+        "Merge K sorted lists",
+        "Median in stream",
+        "Task scheduling with priorities"
+      ],
+      "antiSignals": [
+        "Need all elements sorted",
+        "Need random access"
+      ]
+    },
+    {
+      "id": "card_11",
+      "pattern": "Monotonic Stack",
+      "signals": [
+        "Next greater element",
+        "Previous smaller element",
+        "Largest rectangle in histogram",
+        "Daily temperatures"
+      ],
+      "antiSignals": [
+        "Need global comparison",
+        "Random access pattern"
+      ]
+    },
+    {
+      "id": "card_12",
+      "pattern": "Trie",
+      "signals": [
+        "Prefix matching",
+        "Autocomplete",
+        "Word search in dictionary",
+        "Multiple string lookups"
+      ],
+      "antiSignals": [
+        "Single string search",
+        "No prefix relationship"
+      ]
+    }
+  ]
+}

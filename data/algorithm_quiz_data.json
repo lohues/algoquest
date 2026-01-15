@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "title": "Algorithm Selection Quiz Data",
+    "description": "Quiz-style questions to train algorithm pattern recognition for LeetCode problems",
+    "source": "Derived from AlgoMonster flowchart and patterns",
+    "version": "1.0.0"
+  },
+  "questionFiles": {
+    "signalQuestions": "./questions/signal_questions.json",
+    "patternRecognitionCards": "./questions/pattern_recognition_cards.json",
+    "gameScenarios": "./questions/game_scenarios.json"
+  },
+  "complexityGuide": {
+    "O(1)": ["Hash table lookup", "Array index access", "Stack push/pop"],
+    "O(log n)": ["Binary search", "Balanced BST operations", "Heap operations"],
+    "O(n)": ["Linear scan", "Two pointers", "Sliding window", "DFS/BFS", "Union Find (amortized)"],
+    "O(n log n)": ["Sorting", "Heap sort", "Merge intervals"],
+    "O(n²)": ["Nested loops", "Some DP", "Brute force pairs"],
+    "O(n³)": ["Interval DP", "Floyd-Warshall"],
+    "O(2^n)": ["Subsets", "Some backtracking"],
+    "O(n!)": ["Permutations", "Brute force ordering"]
+  }
+}
