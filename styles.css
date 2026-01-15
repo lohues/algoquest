@@ -437,6 +437,11 @@ body::before {
   cursor: pointer;
   font-family: var(--font-main);
   transition: background var(--transition-fast);
+  list-style: none;
+}
+
+.hints-toggle::-webkit-details-marker {
+  display: none;
 }
 
 .hints-toggle:hover {
@@ -455,22 +460,12 @@ body::before {
   transition: transform var(--transition-normal);
 }
 
-.scenario-hints:not(.collapsed) .hints-arrow {
+.scenario-hints[open] .hints-arrow {
   transform: rotate(180deg);
 }
 
 .hints-content {
-  max-height: 200px;
   padding: 0 var(--space-md) var(--space-md);
-  transition: max-height var(--transition-normal), padding var(--transition-normal), opacity var(--transition-fast);
-  opacity: 1;
-}
-
-.scenario-hints.collapsed .hints-content {
-  max-height: 0;
-  padding: 0 var(--space-md);
-  opacity: 0;
-  overflow: hidden;
 }
 
 .hints-list {

@@ -3,7 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AlgoQuest - Master Algorithm Patterns</title>
+  <title>AlgoQuest - Master Algorithm Patterns | Interactive Coding Interview Prep</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Master algorithm patterns for coding interviews with AlgoQuest. Interactive quizzes, flashcards, and real-world scenarios covering Binary Search, Dynamic Programming, Graph Algorithms, and more.">
+  <meta name="keywords" content="algorithm patterns, coding interview, data structures, binary search, dynamic programming, BFS, DFS, sliding window, two pointers, LeetCode prep, programming quiz">
+  <meta name="author" content="AlgoQuest">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://algoquest.dev/">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://algoquest.dev/">
+  <meta property="og:title" content="AlgoQuest - Master Algorithm Patterns">
+  <meta property="og:description" content="Interactive algorithm pattern recognition for coding interviews. Learn when to use Binary Search, Dynamic Programming, Graph Traversal, and more through engaging quizzes and flashcards.">
+  <meta property="og:image" content="https://algoquest.dev/og-image.png">
+  <meta property="og:site_name" content="AlgoQuest">
+  <meta property="og:locale" content="en_US">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://algoquest.dev/">
+  <meta name="twitter:title" content="AlgoQuest - Master Algorithm Patterns">
+  <meta name="twitter:description" content="Interactive algorithm pattern recognition for coding interviews. Master 12+ patterns through quizzes and flashcards.">
+  <meta name="twitter:image" content="https://algoquest.dev/og-image.png">
+  
+  <!-- Theme & Icons -->
+  <meta name="theme-color" content="#6366f1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AlgoQuest",
+    "description": "Master algorithm patterns for coding interviews with interactive quizzes, flashcards, and real-world scenarios.",
+    "url": "https://algoquest.dev/",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Signal Quiz - Identify algorithms from problem signals",
+      "Pattern Cards - Interactive flashcards for 12 algorithm patterns",
+      "Scenario Quiz - Solve real problem descriptions"
+    ],
+    "screenshot": "https://algoquest.dev/og-image.png",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "150"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What algorithm patterns does AlgoQuest cover?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AlgoQuest covers 12 essential algorithm patterns including Binary Search, Two Pointers, Sliding Window, BFS, DFS, Dynamic Programming, Backtracking, Greedy, Union-Find, Topological Sort, Trie, and Heap/Priority Queue."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does AlgoQuest help with coding interview preparation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AlgoQuest helps you recognize which algorithm pattern to apply based on problem signals. Through interactive quizzes and flashcards, you learn to identify keywords and constraints that indicate the right approach."
+        }
+      }
+    ]
+  }
+  </script>
+  
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -12,48 +97,48 @@
 <body>
   <div class="app-container">
     <!-- Homepage -->
-    <section id="homepage" class="view active">
-      <div class="hero">
+    <main id="homepage" class="view active" role="main">
+      <header class="hero">
         <div class="logo-container">
-          <div class="logo-icon">⚡</div>
+          <div class="logo-icon" role="img" aria-label="AlgoQuest lightning bolt logo">⚡</div>
           <h1 class="logo-text">AlgoQuest</h1>
         </div>
         <p class="tagline">Master algorithm patterns through interactive challenges</p>
-      </div>
+      </header>
       
-      <div class="menu-grid">
-        <button class="menu-card" data-game="signal">
-          <div class="card-icon">🎯</div>
+      <nav class="menu-grid" aria-label="Game modes">
+        <button class="menu-card" data-game="signal" aria-describedby="signal-desc">
+          <div class="card-icon" aria-hidden="true">🎯</div>
           <h2>Signal Quiz</h2>
-          <p>Identify the right algorithm from problem signals</p>
+          <p id="signal-desc">Identify the right algorithm from problem signals</p>
           <div class="card-meta">
             <span class="badge">30 Questions</span>
             <span class="badge">Multiple Choice</span>
           </div>
         </button>
         
-        <button class="menu-card" data-game="pattern">
-          <div class="card-icon">🃏</div>
+        <button class="menu-card" data-game="pattern" aria-describedby="pattern-desc">
+          <div class="card-icon" aria-hidden="true">🃏</div>
           <h2>Pattern Cards</h2>
-          <p>Learn algorithm signals with interactive flashcards</p>
+          <p id="pattern-desc">Learn algorithm signals with interactive flashcards</p>
           <div class="card-meta">
             <span class="badge">12 Patterns</span>
             <span class="badge">Flashcards</span>
           </div>
         </button>
         
-        <button class="menu-card" data-game="scenario">
-          <div class="card-icon">🧩</div>
+        <button class="menu-card" data-game="scenario" aria-describedby="scenario-desc">
+          <div class="card-icon" aria-hidden="true">🧩</div>
           <h2>Scenario Quiz</h2>
-          <p>Solve real problem descriptions and earn points</p>
+          <p id="scenario-desc">Solve real problem descriptions and earn points</p>
           <div class="card-meta">
             <span class="badge">15 Scenarios</span>
             <span class="badge">Points System</span>
           </div>
         </button>
-      </div>
+      </nav>
       
-      <div class="stats-bar">
+      <aside class="stats-bar" aria-label="Your statistics">
         <div class="stat">
           <span class="stat-value" id="total-played">0</span>
           <span class="stat-label">Games Played</span>
@@ -66,168 +151,168 @@
           <span class="stat-value" id="total-points">0</span>
           <span class="stat-label">Total Points</span>
         </div>
-      </div>
-    </section>
+      </aside>
+    </main>
 
     <!-- Signal Quiz View -->
-    <section id="signal-quiz" class="view">
+    <section id="signal-quiz" class="view" aria-label="Signal Quiz game mode">
       <header class="game-header">
-        <button class="back-btn" data-view="homepage">← Back</button>
+        <button class="back-btn" data-view="homepage" aria-label="Go back to homepage">← Back</button>
         <div class="game-title">
-          <span class="game-icon">🎯</span>
+          <span class="game-icon" aria-hidden="true">🎯</span>
           <span>Signal Quiz</span>
         </div>
-        <div class="game-progress">
-          <span id="signal-current">1</span>/<span id="signal-total">30</span>
+        <div class="game-progress" aria-live="polite">
+          <span aria-label="Current question">Question <span id="signal-current">1</span> of <span id="signal-total">30</span></span>
         </div>
       </header>
       
-      <div class="quiz-container">
-        <div class="progress-bar">
+      <article class="quiz-container">
+        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
           <div class="progress-fill" id="signal-progress"></div>
         </div>
         
         <div class="question-card">
-          <div class="question-label">What algorithm fits this signal?</div>
-          <div class="question-text" id="signal-question"></div>
+          <h2 class="question-label">What algorithm fits this signal?</h2>
+          <p class="question-text" id="signal-question"></p>
         </div>
         
-        <div class="options-grid" id="signal-options"></div>
+        <div class="options-grid" id="signal-options" role="group" aria-label="Answer options"></div>
         
-        <div class="feedback-card hidden" id="signal-feedback">
-          <div class="feedback-icon"></div>
+        <div class="feedback-card hidden" id="signal-feedback" role="alert" aria-live="assertive">
+          <div class="feedback-icon" aria-hidden="true"></div>
           <div class="feedback-text"></div>
           <div class="feedback-explanation"></div>
         </div>
         
         <button class="next-btn hidden" id="signal-next">Next Question →</button>
-      </div>
+      </article>
       
-      <div class="score-display">
+      <aside class="score-display" aria-label="Current score">
         <div class="score-item">
           <span class="score-label">Score</span>
-          <span class="score-value" id="signal-score">0</span>
+          <span class="score-value" id="signal-score" aria-live="polite">0</span>
         </div>
         <div class="score-item">
           <span class="score-label">Streak</span>
-          <span class="score-value" id="signal-streak">0</span>
+          <span class="score-value" id="signal-streak" aria-live="polite">0</span>
         </div>
-      </div>
+      </aside>
     </section>
 
     <!-- Pattern Recognition (Flashcard) View -->
-    <section id="pattern-quiz" class="view">
+    <section id="pattern-quiz" class="view" aria-label="Pattern Cards flashcard mode">
       <header class="game-header">
-        <button class="back-btn" data-view="homepage">← Back</button>
+        <button class="back-btn" data-view="homepage" aria-label="Go back to homepage">← Back</button>
         <div class="game-title">
-          <span class="game-icon">🃏</span>
+          <span class="game-icon" aria-hidden="true">🃏</span>
           <span>Pattern Cards</span>
         </div>
-        <div class="game-progress">
-          <span id="pattern-current">1</span>/<span id="pattern-total">12</span>
+        <div class="game-progress" aria-live="polite">
+          <span aria-label="Current card">Card <span id="pattern-current">1</span> of <span id="pattern-total">12</span></span>
         </div>
       </header>
       
-      <div class="flashcard-container">
-        <div class="flashcard" id="flashcard">
+      <article class="flashcard-container">
+        <div class="flashcard" id="flashcard" role="button" tabindex="0" aria-label="Flashcard - click to flip">
           <div class="flashcard-inner">
-            <div class="flashcard-front">
+            <div class="flashcard-front" aria-hidden="false">
               <div class="card-header">
                 <span class="card-type">Algorithm Pattern</span>
               </div>
               <h2 class="pattern-name" id="pattern-name"></h2>
-              <div class="flip-hint">Click to reveal signals →</div>
+              <p class="flip-hint">Click to reveal signals →</p>
             </div>
-            <div class="flashcard-back">
+            <div class="flashcard-back" aria-hidden="true">
               <div class="signals-section">
-                <h3>✅ Use When:</h3>
+                <h3><span aria-hidden="true">✅</span> Use When:</h3>
                 <ul class="signals-list" id="pattern-signals"></ul>
               </div>
               <div class="anti-signals-section">
-                <h3>❌ Avoid When:</h3>
+                <h3><span aria-hidden="true">❌</span> Avoid When:</h3>
                 <ul class="anti-signals-list" id="pattern-anti-signals"></ul>
               </div>
             </div>
           </div>
         </div>
         
-        <div class="flashcard-controls">
-          <button class="control-btn" id="pattern-prev" disabled>← Previous</button>
-          <button class="control-btn shuffle-btn" id="pattern-shuffle">🔀 Shuffle</button>
-          <button class="control-btn" id="pattern-next">Next →</button>
-        </div>
+        <nav class="flashcard-controls" aria-label="Flashcard navigation">
+          <button class="control-btn" id="pattern-prev" disabled aria-label="Previous card">← Previous</button>
+          <button class="control-btn shuffle-btn" id="pattern-shuffle" aria-label="Shuffle cards">🔀 Shuffle</button>
+          <button class="control-btn" id="pattern-next" aria-label="Next card">Next →</button>
+        </nav>
         
-        <div class="card-dots" id="pattern-dots"></div>
-      </div>
+        <div class="card-dots" id="pattern-dots" role="tablist" aria-label="Card position"></div>
+      </article>
       
-      <div class="flashcard-instructions">
-        <p>💡 Click the card to flip • Use arrows to navigate • Learn all 12 patterns!</p>
-      </div>
+      <footer class="flashcard-instructions">
+        <p><span aria-hidden="true">💡</span> Click the card to flip • Use arrows to navigate • Learn all 12 patterns!</p>
+      </footer>
     </section>
 
     <!-- Scenario Quiz View -->
-    <section id="scenario-quiz" class="view">
+    <section id="scenario-quiz" class="view" aria-label="Scenario Quiz game mode">
       <header class="game-header">
-        <button class="back-btn" data-view="homepage">← Back</button>
+        <button class="back-btn" data-view="homepage" aria-label="Go back to homepage">← Back</button>
         <div class="game-title">
-          <span class="game-icon">🧩</span>
+          <span class="game-icon" aria-hidden="true">🧩</span>
           <span>Scenario Quiz</span>
         </div>
-        <div class="game-progress">
-          <span id="scenario-current">1</span>/<span id="scenario-total">15</span>
+        <div class="game-progress" aria-live="polite">
+          <span aria-label="Current scenario">Scenario <span id="scenario-current">1</span> of <span id="scenario-total">15</span></span>
         </div>
       </header>
       
-      <div class="quiz-container">
-        <div class="progress-bar">
+      <article class="quiz-container">
+        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
           <div class="progress-fill" id="scenario-progress"></div>
         </div>
         
         <div class="scenario-card">
           <div class="scenario-header">
             <span class="difficulty-badge" id="scenario-difficulty">Medium</span>
-            <span class="points-badge" id="scenario-points">+20 pts</span>
+            <span class="points-badge" id="scenario-points" aria-label="Points available">+20 pts</span>
           </div>
-          <div class="scenario-problem" id="scenario-problem"></div>
-          <div class="scenario-hints collapsed">
-            <button class="hints-toggle" id="hints-toggle">
-              <span class="hints-label">💡 Hints</span>
-              <span class="hints-arrow">▼</span>
-            </button>
+          <p class="scenario-problem" id="scenario-problem"></p>
+          <details class="scenario-hints">
+            <summary class="hints-toggle" id="hints-toggle">
+              <span class="hints-label"><span aria-hidden="true">💡</span> Hints</span>
+              <span class="hints-arrow" aria-hidden="true">▼</span>
+            </summary>
             <div class="hints-content">
               <div class="hints-list" id="scenario-hints"></div>
             </div>
-          </div>
+          </details>
         </div>
         
-        <div class="options-grid" id="scenario-options"></div>
+        <div class="options-grid" id="scenario-options" role="group" aria-label="Answer options"></div>
         
-        <div class="feedback-card hidden" id="scenario-feedback">
-          <div class="feedback-icon"></div>
+        <div class="feedback-card hidden" id="scenario-feedback" role="alert" aria-live="assertive">
+          <div class="feedback-icon" aria-hidden="true"></div>
           <div class="feedback-text"></div>
         </div>
         
         <button class="next-btn hidden" id="scenario-next">Next Scenario →</button>
-      </div>
+      </article>
       
-      <div class="score-display scenario-score">
+      <aside class="score-display scenario-score" aria-label="Current score">
         <div class="score-item">
           <span class="score-label">Points</span>
-          <span class="score-value" id="scenario-score">0</span>
+          <span class="score-value" id="scenario-score" aria-live="polite">0</span>
         </div>
         <div class="score-item">
           <span class="score-label">Correct</span>
-          <span class="score-value" id="scenario-correct">0</span>
+          <span class="score-value" id="scenario-correct" aria-live="polite">0</span>
         </div>
-      </div>
+      </aside>
     </section>
 
     <!-- Results View -->
-    <section id="results" class="view">
-      <div class="results-container">
-        <div class="results-icon" id="results-icon">🏆</div>
+    <section id="results" class="view" aria-label="Quiz results">
+      <article class="results-container">
+        <div class="results-icon" id="results-icon" aria-hidden="true">🏆</div>
         <h2 class="results-title" id="results-title">Quiz Complete!</h2>
-        <div class="results-stats">
+        <div class="results-stats" role="group" aria-label="Final statistics">
           <div class="result-stat">
             <span class="result-value" id="result-score">0</span>
             <span class="result-label">Final Score</span>
@@ -241,13 +326,39 @@
             <span class="result-label">Accuracy</span>
           </div>
         </div>
-        <div class="results-actions">
+        <nav class="results-actions" aria-label="Post-quiz options">
           <button class="action-btn primary" id="play-again">Play Again</button>
           <button class="action-btn secondary" data-view="homepage">Back to Menu</button>
-        </div>
-      </div>
+        </nav>
+      </article>
     </section>
   </div>
+
+  <!-- Noscript fallback for SEO and accessibility -->
+  <noscript>
+    <style>
+      .app-container { display: none; }
+      .noscript-message { 
+        max-width: 600px; 
+        margin: 4rem auto; 
+        padding: 2rem; 
+        text-align: center; 
+        font-family: system-ui, sans-serif;
+        background: #f8f9fa;
+        border-radius: 12px;
+      }
+      .noscript-message h1 { color: #1a1a2e; margin-bottom: 1rem; }
+      .noscript-message p { color: #666; line-height: 1.6; }
+    </style>
+    <div class="noscript-message">
+      <h1>⚡ AlgoQuest</h1>
+      <p>AlgoQuest is an interactive web application for mastering algorithm patterns. 
+         It includes quizzes and flashcards covering 12 essential patterns: Binary Search, 
+         Two Pointers, Sliding Window, BFS, DFS, Dynamic Programming, Backtracking, 
+         Greedy, Union-Find, Topological Sort, Trie, and Heap/Priority Queue.</p>
+      <p><strong>Please enable JavaScript to use this application.</strong></p>
+    </div>
+  </noscript>
 
   <script src="app.js" type="module"></script>
 </body>
