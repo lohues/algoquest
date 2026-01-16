@@ -16,6 +16,10 @@ async function loadJSON(path) {
 let signalData = null;
 let patternData = null;
 let scenarioData = null;
+let flowchartData = null;
+
+// Algorithm display names (populated from flowchart data)
+let algorithmNames = {};
 
 // Global state
 const gameState = {
@@ -46,51 +50,6 @@ const gameState = {
   }
 };
 
-// Algorithm display names
-const algorithmNames = {
-  binary_search: 'Binary Search',
-  binary_search_rotated: 'Binary Search (Rotated)',
-  linear_search_or_hash: 'Linear Search / Hash Map',
-  two_pointers_same: 'Two Pointers (Same Direction)',
-  two_pointers_opposite: 'Two Pointers (Opposite)',
-  sliding_window_fixed: 'Sliding Window (Fixed)',
-  sliding_window_variable: 'Sliding Window (Variable)',
-  prefix_sum: 'Prefix Sum',
-  dfs_tree: 'DFS on Tree',
-  bfs_tree: 'BFS on Tree',
-  dfs_graph: 'DFS on Graph',
-  bfs_graph: 'BFS on Graph',
-  bfs_matrix: 'BFS on Matrix',
-  dfs_flood_fill: 'DFS Flood Fill',
-  dfs_cycle_directed: 'DFS Cycle Detection',
-  dijkstra: 'Dijkstra\'s Algorithm',
-  topological_sort: 'Topological Sort',
-  union_find: 'Union Find',
-  union_find_cycle: 'Union Find (Cycle)',
-  dfs_components: 'DFS (Components)',
-  dp_linear: 'Linear DP',
-  dp_dual_sequence: 'Dual Sequence DP',
-  dp_grid: 'Grid DP',
-  dp_knapsack: 'Knapsack DP',
-  dp_tree: 'Tree DP',
-  dp_lis: 'LIS DP',
-  dp_game_theory: 'Game Theory DP',
-  backtracking: 'Backtracking',
-  greedy: 'Greedy Algorithm',
-  greedy_jump: 'Greedy (Jump Game)',
-  kadane_greedy: 'Kadane\'s Algorithm',
-  heap_top_k: 'Heap (Top K)',
-  monotonic_stack: 'Monotonic Stack',
-  stack: 'Stack',
-  trie: 'Trie',
-  floyd_cycle: 'Floyd Cycle Detection',
-  interval_merge: 'Interval Merge',
-  interval_heap: 'Interval + Heap',
-  cache_design: 'Cache Design (LRU)',
-  comparison_sort: 'Comparison Sort',
-  binary_search_matrix: 'Binary Search (Matrix)',
-  divide_conquer: 'Divide and Conquer'
-};
 
 // ============================================
 // INITIALIZATION
@@ -99,11 +58,15 @@ const algorithmNames = {
 async function init() {
   // Load all data
   try {
-    [signalData, patternData, scenarioData] = await Promise.all([
+    [signalData, patternData, scenarioData, flowchartData] = await Promise.all([
       loadJSON('./data/questions/signal_questions.json'),
       loadJSON('./data/questions/pattern_recognition_cards.json'),
-      loadJSON('./data/questions/game_scenarios.json')
+      loadJSON('./data/questions/game_scenarios.json'),
+      loadJSON('./data/algorithm_decision_flowchart.json')
     ]);
+    
+    // Build algorithm names from flowchart data
+    buildAlgorithmNames();
     
     // Update menu counts from loaded data
     updateMenuCounts();
@@ -117,6 +80,14 @@ async function init() {
     console.log('AlgoQuest initialized successfully!');
   } catch (error) {
     console.error('Failed to load game data:', error);
+  }
+}
+
+function buildAlgorithmNames() {
+  // Build algorithm display names from flowchart data
+  algorithmNames = {};
+  for (const [id, algo] of Object.entries(flowchartData.algorithms)) {
+    algorithmNames[id] = algo.name;
   }
 }
 
