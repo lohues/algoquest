@@ -2,8 +2,8 @@
   "metadata": {
     "title": "Pattern Recognition Cards",
     "description": "Flashcard-style data showing signals and anti-signals for each algorithm pattern",
-    "version": "1.0.0",
-    "cardCount": 12
+    "version": "1.1.0",
+    "cardCount": 16
   },
   "cards": [
     {
@@ -88,9 +88,13 @@
       "signals": [
         "Optimal substructure",
         "Overlapping subproblems",
+        "How many ways...",
         "Count ways",
         "Minimum/maximum",
-        "Can solve recursively"
+        "Can solve recursively",
+        "Game theory (two players)",
+        "Longest increasing subsequence",
+        "Partition/split array or string"
       ],
       "antiSignals": [
         "Greedy choice always works",
@@ -181,6 +185,72 @@
       "antiSignals": [
         "Single string search",
         "No prefix relationship"
+      ]
+    },
+    {
+      "id": "card_13",
+      "pattern": "Stack",
+      "signals": [
+        "Valid parentheses / brackets",
+        "Matching pairs",
+        "Nested structures",
+        "Expression evaluation",
+        "Reverse Polish notation",
+        "Undo operations"
+      ],
+      "antiSignals": [
+        "No nesting involved",
+        "Order doesn't matter",
+        "Need random access"
+      ]
+    },
+    {
+      "id": "card_14",
+      "pattern": "Greedy",
+      "signals": [
+        "Local optimal leads to global optimal",
+        "Jump game",
+        "Gas station / circular tour",
+        "Maximum subarray (Kadane's)",
+        "Activity selection",
+        "Interval scheduling",
+        "Task assignment"
+      ],
+      "antiSignals": [
+        "Need to consider all possibilities",
+        "Overlapping subproblems require DP",
+        "Counterexamples exist for greedy choice"
+      ]
+    },
+    {
+      "id": "card_15",
+      "pattern": "Prefix Sum",
+      "signals": [
+        "Subarray sum queries",
+        "Range sum",
+        "Subarray sum equals target",
+        "Continuous subarray sum",
+        "Product of array except self"
+      ],
+      "antiSignals": [
+        "Need actual subarray elements",
+        "Single element queries",
+        "Non-contiguous elements"
+      ]
+    },
+    {
+      "id": "card_16",
+      "pattern": "Divide and Conquer",
+      "signals": [
+        "Problem can be split into independent subproblems",
+        "Merge sort pattern",
+        "Count inversions",
+        "Closest pair of points",
+        "Skyline problem"
+      ],
+      "antiSignals": [
+        "Subproblems overlap (use DP instead)",
+        "Cannot be divided cleanly"
       ]
     }
   ]

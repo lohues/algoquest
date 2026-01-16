@@ -4,7 +4,7 @@
     "source": "https://algo.monster/flowchart",
     "description": "A decision tree to systematically select the right algorithm pattern for solving coding interview problems",
     "version": "1.0.0",
-    "lastUpdated": "2026-01-15"
+    "lastUpdated": "2026-01-17"
   },
   "decisionTree": {
     "root": {
@@ -30,7 +30,18 @@
           { "label": "Generate combinations/permutations", "next": "backtracking" },
           { "label": "Optimize (max/min)", "next": "array_optimize" },
           { "label": "Two elements with condition", "next": "two_pointers_decision" },
-          { "label": "Rearrange/sort", "next": "sorting_decision" }
+          { "label": "Rearrange/sort", "next": "sorting_decision" },
+          { "label": "Validate parentheses/brackets", "next": "stack" },
+          { "label": "Partition/split into parts", "next": "partition_decision" }
+        ]
+      },
+      "partition_decision": {
+        "id": "partition_decision",
+        "question": "What type of partition problem?",
+        "options": [
+          { "label": "Generate all valid partitions", "next": "backtracking" },
+          { "label": "Partition into equal sum subsets", "next": "dp_knapsack" },
+          { "label": "Count ways to partition/decode", "next": "dp_linear" }
         ]
       },
       "array_search": {
@@ -57,8 +68,19 @@
         "question": "Does the optimal solution have overlapping subproblems?",
         "options": [
           { "label": "Yes, subproblems overlap", "next": "dynamic_programming_decision" },
-          { "label": "No, greedy choice works", "next": "greedy" },
-          { "label": "Need to try all possibilities", "next": "backtracking" }
+          { "label": "No, greedy choice works", "next": "greedy_decision" },
+          { "label": "Need to try all possibilities", "next": "backtracking" },
+          { "label": "Maximum contiguous subarray sum", "next": "kadane_greedy" }
+        ]
+      },
+      "greedy_decision": {
+        "id": "greedy_decision",
+        "question": "What type of greedy problem?",
+        "options": [
+          { "label": "Jump/reachability", "next": "greedy_jump" },
+          { "label": "Circular tour/gas station", "next": "greedy" },
+          { "label": "Interval scheduling", "next": "greedy" },
+          { "label": "General greedy", "next": "greedy" }
         ]
       },
       "two_pointers_decision": {
@@ -173,7 +195,9 @@
           { "label": "Grid/matrix", "next": "dp_grid" },
           { "label": "Knapsack/subset sum", "next": "dp_knapsack" },
           { "label": "Interval", "next": "dp_interval" },
-          { "label": "Tree DP", "next": "dp_tree" }
+          { "label": "Tree DP", "next": "dp_tree" },
+          { "label": "Game theory (two players)", "next": "dp_game_theory" },
+          { "label": "Longest increasing subsequence", "next": "dp_lis" }
         ]
       },
       "sorting_decision": {
@@ -652,6 +676,66 @@
       "description": "Tree structure for prefix-based string operations",
       "keywords": ["prefix", "autocomplete", "word search", "dictionary"],
       "exampleProblems": ["Implement Trie", "Word Search II", "Design Search Autocomplete"]
+    },
+    "stack": {
+      "id": "stack",
+      "name": "Stack",
+      "category": "Stack",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(n)",
+      "description": "LIFO structure for matching pairs and nested structures",
+      "keywords": ["parentheses", "brackets", "valid", "matching", "nested", "expression"],
+      "exampleProblems": ["Valid Parentheses", "Evaluate Reverse Polish Notation", "Basic Calculator", "Decode String"]
+    },
+    "kadane_greedy": {
+      "id": "kadane_greedy",
+      "name": "Kadane's Algorithm",
+      "category": "Greedy",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(1)",
+      "description": "Find maximum sum contiguous subarray by deciding to extend or restart",
+      "keywords": ["maximum subarray", "contiguous", "sum", "extend or restart"],
+      "exampleProblems": ["Maximum Subarray", "Maximum Product Subarray"]
+    },
+    "greedy_jump": {
+      "id": "greedy_jump",
+      "name": "Greedy Jump",
+      "category": "Greedy",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(1)",
+      "description": "Track furthest reachable position to determine if target is reachable",
+      "keywords": ["jump", "reach", "furthest", "reachability"],
+      "exampleProblems": ["Jump Game", "Jump Game II"]
+    },
+    "dp_game_theory": {
+      "id": "dp_game_theory",
+      "name": "Game Theory DP",
+      "category": "Dynamic Programming",
+      "timeComplexity": "O(n²)",
+      "spaceComplexity": "O(n²)",
+      "description": "DP for two-player games with optimal play (minimax)",
+      "keywords": ["game", "two players", "optimal", "win", "turns"],
+      "exampleProblems": ["Stone Game", "Divisor Game", "Predict the Winner", "Can I Win"]
+    },
+    "dp_lis": {
+      "id": "dp_lis",
+      "name": "Longest Increasing Subsequence DP",
+      "category": "Dynamic Programming",
+      "timeComplexity": "O(n²) or O(n log n)",
+      "spaceComplexity": "O(n)",
+      "description": "Find longest strictly increasing subsequence using DP or binary search",
+      "keywords": ["longest", "increasing", "subsequence", "LIS"],
+      "exampleProblems": ["Longest Increasing Subsequence", "Russian Doll Envelopes", "Number of Longest Increasing Subsequence"]
+    },
+    "divide_conquer": {
+      "id": "divide_conquer",
+      "name": "Divide and Conquer",
+      "category": "Recursion",
+      "timeComplexity": "O(n log n)",
+      "spaceComplexity": "O(n) or O(log n)",
+      "description": "Split problem into independent subproblems, solve recursively, combine results",
+      "keywords": ["split", "merge", "inversions", "closest pair", "skyline"],
+      "exampleProblems": ["Merge Sort", "Count of Smaller Numbers After Self", "The Skyline Problem"]
     }
   },
   "keywordMapping": {
@@ -663,7 +747,9 @@
     "subsets": ["backtracking"],
     "longest substring": ["sliding_window_variable"],
     "shortest substring": ["sliding_window_variable"],
+    "substring": ["sliding_window_variable"],
     "subarray sum": ["prefix_sum", "sliding_window_variable"],
+    "subarray": ["sliding_window_variable", "prefix_sum", "kadane_greedy"],
     "connected components": ["union_find", "dfs_components"],
     "cycle detection": ["floyd_cycle", "dfs_cycle_directed", "union_find_cycle"],
     "level order": ["bfs_tree"],
@@ -680,38 +766,59 @@
     "coin change": ["dp_knapsack"],
     "house robber": ["dp_linear", "dp_tree"],
     "climbing stairs": ["dp_linear"],
-    "palindrome": ["two_pointers_opposite", "dp_interval"],
+    "palindrome": ["two_pointers_opposite", "dp_interval", "backtracking"],
     "anagram": ["sliding_window_fixed"],
-    "parentheses": ["backtracking", "monotonic_stack"],
+    "parentheses": ["stack", "backtracking"],
+    "brackets": ["stack"],
     "prefix": ["trie", "prefix_sum"],
     "LRU": ["cache_design"],
-    "next greater": ["monotonic_stack"]
+    "next greater": ["monotonic_stack"],
+    "how many ways": ["dp_linear", "backtracking"],
+    "count ways": ["dp_linear", "dp_grid"],
+    "max subarray": ["kadane_greedy"],
+    "maximum subarray": ["kadane_greedy"],
+    "jump": ["greedy_jump", "dp_linear"],
+    "jump game": ["greedy_jump"],
+    "game": ["dp_game_theory"],
+    "two players": ["dp_game_theory"],
+    "partition": ["backtracking", "dp_knapsack"],
+    "split string": ["backtracking", "dp_linear"],
+    "subsequence": ["dp_lis", "dp_dual_sequence"],
+    "longest increasing": ["dp_lis"],
+    "x sum": ["two_pointers_opposite", "linear_search_or_hash"],
+    "two sum": ["two_pointers_opposite", "linear_search_or_hash"],
+    "matrix": ["dfs_flood_fill", "bfs_matrix", "dp_grid"],
+    "gas station": ["greedy"],
+    "circular tour": ["greedy"],
+    "inversions": ["divide_conquer"],
+    "merge sort": ["divide_conquer"],
+    "skyline": ["divide_conquer"]
   },
   "difficultyProgression": [
     {
       "level": 1,
       "name": "Fundamentals",
-      "algorithms": ["binary_search", "two_pointers_opposite", "two_pointers_same", "linear_search_or_hash"]
+      "algorithms": ["binary_search", "two_pointers_opposite", "two_pointers_same", "linear_search_or_hash", "stack"]
     },
     {
       "level": 2,
       "name": "Intermediate",
-      "algorithms": ["sliding_window_fixed", "sliding_window_variable", "prefix_sum", "dfs_tree", "bfs_tree"]
+      "algorithms": ["sliding_window_fixed", "sliding_window_variable", "prefix_sum", "dfs_tree", "bfs_tree", "kadane_greedy"]
     },
     {
       "level": 3,
       "name": "Graphs & DP Basics",
-      "algorithms": ["bfs_graph", "dfs_graph", "dfs_flood_fill", "dp_linear", "backtracking"]
+      "algorithms": ["bfs_graph", "dfs_graph", "dfs_flood_fill", "dp_linear", "backtracking", "greedy", "greedy_jump"]
     },
     {
       "level": 4,
       "name": "Advanced",
-      "algorithms": ["topological_sort", "union_find", "dp_dual_sequence", "dp_knapsack", "monotonic_stack"]
+      "algorithms": ["topological_sort", "union_find", "dp_dual_sequence", "dp_knapsack", "monotonic_stack", "dp_lis", "divide_conquer"]
     },
     {
       "level": 5,
       "name": "Expert",
-      "algorithms": ["dijkstra", "dp_interval", "dp_tree", "trie", "interval_sweep"]
+      "algorithms": ["dijkstra", "dp_interval", "dp_tree", "trie", "interval_sweep", "dp_game_theory"]
     }
   ]
 }

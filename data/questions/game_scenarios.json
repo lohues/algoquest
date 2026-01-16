@@ -2,8 +2,8 @@
   "metadata": {
     "title": "Game Scenarios",
     "description": "Full problem descriptions with hints for interactive game play",
-    "version": "1.0.0",
-    "scenarioCount": 15,
+    "version": "1.1.0",
+    "scenarioCount": 22,
     "difficultyLevels": ["easy", "medium", "hard"],
     "pointRange": {
       "easy": 10,
@@ -129,6 +129,62 @@
       "problemDescription": "Find the number of connected components in an undirected graph that changes dynamically.",
       "hints": ["Components", "Dynamic", "Edges added over time"],
       "correctAnswer": "union_find",
+      "difficulty": "medium",
+      "points": 25
+    },
+    {
+      "id": "scenario_16",
+      "problemDescription": "Find the contiguous subarray within an array that has the largest sum.",
+      "hints": ["Maximum", "Contiguous subarray", "Can extend current or start fresh"],
+      "correctAnswer": "kadane_greedy",
+      "difficulty": "medium",
+      "points": 20
+    },
+    {
+      "id": "scenario_17",
+      "problemDescription": "Given an array where each element represents max jump length at that position, determine if you can reach the last index.",
+      "hints": ["Jump", "Reachability", "Track furthest position"],
+      "correctAnswer": "greedy_jump",
+      "difficulty": "medium",
+      "points": 20
+    },
+    {
+      "id": "scenario_18",
+      "problemDescription": "Two players pick numbers from either end of an array. Determine if the first player can win with optimal play.",
+      "hints": ["Game", "Two players", "Optimal moves"],
+      "correctAnswer": "dp_game_theory",
+      "difficulty": "hard",
+      "points": 30
+    },
+    {
+      "id": "scenario_19",
+      "problemDescription": "Given a string containing just '(', ')', '{', '}', '[' and ']', determine if the input string is valid.",
+      "hints": ["Parentheses", "Matching pairs", "Nested"],
+      "correctAnswer": "stack",
+      "difficulty": "easy",
+      "points": 10
+    },
+    {
+      "id": "scenario_20",
+      "problemDescription": "A message containing letters is encoded as numbers. Given a string of digits, count how many ways to decode it.",
+      "hints": ["How many ways", "Decode", "Previous choices affect current"],
+      "correctAnswer": "dp_linear",
+      "difficulty": "medium",
+      "points": 25
+    },
+    {
+      "id": "scenario_21",
+      "problemDescription": "Find the length of the longest strictly increasing subsequence in an array.",
+      "hints": ["Subsequence", "Longest", "Increasing order"],
+      "correctAnswer": "dp_lis",
+      "difficulty": "medium",
+      "points": 25
+    },
+    {
+      "id": "scenario_22",
+      "problemDescription": "There are n gas stations along a circular route. Determine if you can travel around the circuit once starting from some station.",
+      "hints": ["Circular", "Gas station", "Deficit and surplus"],
+      "correctAnswer": "greedy",
       "difficulty": "medium",
       "points": 25
     }

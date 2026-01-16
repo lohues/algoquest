@@ -2,8 +2,8 @@
   "metadata": {
     "title": "Signal Questions",
     "description": "Quiz questions that test algorithm selection based on problem signals",
-    "version": "1.0.0",
-    "questionCount": 30
+    "version": "1.1.0",
+    "questionCount": 40
   },
   "questions": [
     {
@@ -215,6 +215,76 @@
       "correctAlgorithm": "dfs_cycle_directed",
       "wrongOptions": ["union_find_cycle", "bfs_graph", "floyd_cycle"],
       "explanation": "DFS with 3-color marking detects back edges in directed graphs"
+    },
+    {
+      "id": "q31",
+      "signal": "Check if string has valid matching parentheses/brackets",
+      "correctAlgorithm": "stack",
+      "wrongOptions": ["two_pointers_opposite", "sliding_window_variable", "dfs_tree"],
+      "explanation": "Stack matches opening brackets with closing ones in LIFO order"
+    },
+    {
+      "id": "q32",
+      "signal": "Find maximum sum contiguous subarray",
+      "correctAlgorithm": "kadane_greedy",
+      "wrongOptions": ["dp_linear", "sliding_window_variable", "prefix_sum"],
+      "explanation": "Kadane's algorithm greedily decides to extend or restart subarray at each position in O(n)"
+    },
+    {
+      "id": "q33",
+      "signal": "How many ways to decode a string of digits into letters",
+      "correctAlgorithm": "dp_linear",
+      "wrongOptions": ["backtracking", "sliding_window_variable", "trie"],
+      "explanation": "DP counts ways: dp[i] = dp[i-1] + dp[i-2] based on valid single and double digit decodings"
+    },
+    {
+      "id": "q34",
+      "signal": "Determine if you can reach the last index by jumping",
+      "correctAlgorithm": "greedy_jump",
+      "wrongOptions": ["bfs_graph", "dp_grid", "backtracking"],
+      "explanation": "Greedy tracks max reachable index - if current position exceeds it, unreachable"
+    },
+    {
+      "id": "q35",
+      "signal": "Two players take turns, determine if first player can win optimally",
+      "correctAlgorithm": "dp_game_theory",
+      "wrongOptions": ["greedy", "backtracking", "bfs_graph"],
+      "explanation": "Game theory DP considers optimal play from both players' perspectives (minimax)"
+    },
+    {
+      "id": "q36",
+      "signal": "Partition a string into palindromic substrings",
+      "correctAlgorithm": "backtracking",
+      "wrongOptions": ["sliding_window_variable", "two_pointers_opposite", "dp_linear"],
+      "explanation": "Backtracking explores all partition points, pruning non-palindrome prefixes"
+    },
+    {
+      "id": "q37",
+      "signal": "Find the longest increasing subsequence",
+      "correctAlgorithm": "dp_lis",
+      "wrongOptions": ["sliding_window_variable", "two_pointers_same", "greedy"],
+      "explanation": "DP where dp[i] = longest subsequence ending at i, with optional binary search optimization for O(n log n)"
+    },
+    {
+      "id": "q38",
+      "signal": "Circular tour problem - can you complete the circuit starting from some station",
+      "correctAlgorithm": "greedy",
+      "wrongOptions": ["dp_linear", "bfs_graph", "sliding_window_variable"],
+      "explanation": "Greedy tracks deficit and surplus, resets start position when total becomes negative"
+    },
+    {
+      "id": "q39",
+      "signal": "Evaluate reverse Polish notation expression",
+      "correctAlgorithm": "stack",
+      "wrongOptions": ["two_pointers_same", "dfs_tree", "dp_linear"],
+      "explanation": "Stack evaluates postfix expressions by pushing operands and applying operators"
+    },
+    {
+      "id": "q40",
+      "signal": "Count inversions in an array (pairs where i < j but arr[i] > arr[j])",
+      "correctAlgorithm": "divide_conquer",
+      "wrongOptions": ["two_pointers_opposite", "binary_search", "dp_linear"],
+      "explanation": "Modified merge sort counts inversions during merge step in O(n log n)"
     }
   ]
 }
