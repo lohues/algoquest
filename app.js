@@ -73,17 +73,23 @@ const algorithmNames = {
   dp_grid: 'Grid DP',
   dp_knapsack: 'Knapsack DP',
   dp_tree: 'Tree DP',
+  dp_lis: 'LIS DP',
+  dp_game_theory: 'Game Theory DP',
   backtracking: 'Backtracking',
   greedy: 'Greedy Algorithm',
+  greedy_jump: 'Greedy (Jump Game)',
+  kadane_greedy: 'Kadane\'s Algorithm',
   heap_top_k: 'Heap (Top K)',
   monotonic_stack: 'Monotonic Stack',
+  stack: 'Stack',
   trie: 'Trie',
   floyd_cycle: 'Floyd Cycle Detection',
   interval_merge: 'Interval Merge',
   interval_heap: 'Interval + Heap',
   cache_design: 'Cache Design (LRU)',
   comparison_sort: 'Comparison Sort',
-  binary_search_matrix: 'Binary Search (Matrix)'
+  binary_search_matrix: 'Binary Search (Matrix)',
+  divide_conquer: 'Divide and Conquer'
 };
 
 // ============================================
@@ -99,6 +105,9 @@ async function init() {
       loadJSON('./data/questions/game_scenarios.json')
     ]);
     
+    // Update menu counts from loaded data
+    updateMenuCounts();
+    
     // Load saved stats
     loadStats();
     
@@ -109,6 +118,20 @@ async function init() {
   } catch (error) {
     console.error('Failed to load game data:', error);
   }
+}
+
+function updateMenuCounts() {
+  // Update badge counts dynamically from loaded data
+  document.getElementById('signal-count').textContent = 
+    `${signalData.questions.length} Questions`;
+  document.getElementById('pattern-count').textContent = 
+    `${patternData.cards.length} Patterns`;
+  document.getElementById('scenario-count').textContent = 
+    `${scenarioData.scenarios.length} Scenarios`;
+  
+  // Update pattern instruction count
+  document.getElementById('pattern-instruction-count').textContent = 
+    patternData.cards.length;
 }
 
 function loadStats() {

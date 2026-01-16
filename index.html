@@ -25,7 +25,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://algoquest.louisdav.id/">
   <meta name="twitter:title" content="AlgoQuest - Master Algorithm Patterns">
-  <meta name="twitter:description" content="Interactive algorithm pattern recognition for coding interviews. Master 12+ patterns through quizzes and flashcards.">
+  <meta name="twitter:description" content="Interactive algorithm pattern recognition for coding interviews. Master 16+ patterns through quizzes and flashcards.">
   <meta name="twitter:image" content="https://algoquest.louisdav.id/og-image.png">
   
   <!-- Theme & Icons -->
@@ -52,7 +52,7 @@
     },
     "featureList": [
       "Signal Quiz - Identify algorithms from problem signals",
-      "Pattern Cards - Interactive flashcards for 12 algorithm patterns",
+      "Pattern Cards - Interactive flashcards for 16 algorithm patterns",
       "Scenario Quiz - Solve real problem descriptions"
     ],
     "screenshot": "https://algoquest.louisdav.id/og-image.png",
@@ -73,7 +73,7 @@
         "name": "What algorithm patterns does AlgoQuest cover?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "AlgoQuest covers 12 essential algorithm patterns including Binary Search, Two Pointers, Sliding Window, BFS, DFS, Dynamic Programming, Backtracking, Greedy, Union-Find, Topological Sort, Trie, and Heap/Priority Queue."
+          "text": "AlgoQuest covers 16 essential algorithm patterns including Binary Search, Two Pointers, Sliding Window, BFS, DFS, Dynamic Programming, Backtracking, Greedy, Union-Find, Topological Sort, Trie, Heap/Priority Queue, Stack, Prefix Sum, and Divide and Conquer."
         }
       },
       {
@@ -112,7 +112,7 @@
           <h2>Signal Quiz</h2>
           <p id="signal-desc">Identify the right algorithm from problem signals</p>
           <div class="card-meta">
-            <span class="badge">30 Questions</span>
+            <span class="badge" id="signal-count">-- Questions</span>
             <span class="badge">Multiple Choice</span>
           </div>
         </button>
@@ -122,7 +122,7 @@
           <h2>Pattern Cards</h2>
           <p id="pattern-desc">Learn algorithm signals with interactive flashcards</p>
           <div class="card-meta">
-            <span class="badge">12 Patterns</span>
+            <span class="badge" id="pattern-count">-- Patterns</span>
             <span class="badge">Flashcards</span>
           </div>
         </button>
@@ -132,7 +132,7 @@
           <h2>Scenario Quiz</h2>
           <p id="scenario-desc">Solve real problem descriptions and earn points</p>
           <div class="card-meta">
-            <span class="badge">15 Scenarios</span>
+            <span class="badge" id="scenario-count">-- Scenarios</span>
             <span class="badge">Points System</span>
           </div>
         </button>
@@ -163,7 +163,7 @@
           <span>Signal Quiz</span>
         </div>
         <div class="game-progress" aria-live="polite">
-          <span aria-label="Current question">Question <span id="signal-current">1</span> of <span id="signal-total">30</span></span>
+          <span aria-label="Current question">Question <span id="signal-current">1</span> of <span id="signal-total">--</span></span>
         </div>
       </header>
       
@@ -209,7 +209,7 @@
           <span>Pattern Cards</span>
         </div>
         <div class="game-progress" aria-live="polite">
-          <span aria-label="Current card">Card <span id="pattern-current">1</span> of <span id="pattern-total">12</span></span>
+          <span aria-label="Current card">Card <span id="pattern-current">1</span> of <span id="pattern-total">--</span></span>
         </div>
       </header>
       
@@ -246,7 +246,7 @@
       </article>
       
       <footer class="flashcard-instructions">
-        <p><span aria-hidden="true">💡</span> Click the card to flip • Use arrows to navigate • Learn all 12 patterns!</p>
+        <p><span aria-hidden="true">💡</span> Click the card to flip • Use arrows to navigate • Learn all <span id="pattern-instruction-count">--</span> patterns!</p>
       </footer>
     </section>
 
@@ -259,7 +259,7 @@
           <span>Scenario Quiz</span>
         </div>
         <div class="game-progress" aria-live="polite">
-          <span aria-label="Current scenario">Scenario <span id="scenario-current">1</span> of <span id="scenario-total">15</span></span>
+          <span aria-label="Current scenario">Scenario <span id="scenario-current">1</span> of <span id="scenario-total">--</span></span>
         </div>
       </header>
       
@@ -353,9 +353,9 @@
     <div class="noscript-message">
       <h1>⚡ AlgoQuest</h1>
       <p>AlgoQuest is an interactive web application for mastering algorithm patterns. 
-         It includes quizzes and flashcards covering 12 essential patterns: Binary Search, 
+         It includes quizzes and flashcards covering 16+ essential patterns: Binary Search, 
          Two Pointers, Sliding Window, BFS, DFS, Dynamic Programming, Backtracking, 
-         Greedy, Union-Find, Topological Sort, Trie, and Heap/Priority Queue.</p>
+         Greedy, Union-Find, Topological Sort, Trie, Heap/Priority Queue, Stack, Prefix Sum, and more.</p>
       <p><strong>Please enable JavaScript to use this application.</strong></p>
     </div>
   </noscript>
