@@ -136,6 +136,16 @@
             <span class="badge">Points System</span>
           </div>
         </button>
+        
+        <button class="menu-card" data-game="complexity" aria-describedby="complexity-desc">
+          <div class="card-icon" aria-hidden="true">⏱️</div>
+          <h2>Complexity Quiz</h2>
+          <p id="complexity-desc">Test your knowledge of Big O time complexity</p>
+          <div class="card-meta">
+            <span class="badge" id="complexity-count">-- Questions</span>
+            <span class="badge">Multiple Choice</span>
+          </div>
+        </button>
       </nav>
       
       <aside class="stats-bar" aria-label="Your statistics">
@@ -303,6 +313,52 @@
         <div class="score-item">
           <span class="score-label">Correct</span>
           <span class="score-value" id="scenario-correct" aria-live="polite">0</span>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Complexity Quiz View -->
+    <section id="complexity-quiz" class="view" aria-label="Complexity Quiz game mode">
+      <header class="game-header">
+        <button class="back-btn" data-view="homepage" aria-label="Go back to homepage">← Back</button>
+        <div class="game-title">
+          <span class="game-icon" aria-hidden="true">⏱️</span>
+          <span>Complexity Quiz</span>
+        </div>
+        <div class="game-progress" aria-live="polite">
+          <span aria-label="Current question">Question <span id="complexity-current">1</span> of <span id="complexity-total">--</span></span>
+        </div>
+      </header>
+      
+      <article class="quiz-container">
+        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-fill" id="complexity-progress"></div>
+        </div>
+        
+        <div class="question-card">
+          <h2 class="question-label">What is the time complexity?</h2>
+          <p class="question-text" id="complexity-question"></p>
+        </div>
+        
+        <div class="options-grid" id="complexity-options" role="group" aria-label="Answer options"></div>
+        
+        <div class="feedback-card hidden" id="complexity-feedback" role="alert" aria-live="assertive">
+          <div class="feedback-icon" aria-hidden="true"></div>
+          <div class="feedback-text"></div>
+          <div class="feedback-explanation"></div>
+        </div>
+        
+        <button class="next-btn hidden" id="complexity-next">Next Question →</button>
+      </article>
+      
+      <aside class="score-display" aria-label="Current score">
+        <div class="score-item">
+          <span class="score-label">Score</span>
+          <span class="score-value" id="complexity-score" aria-live="polite">0</span>
+        </div>
+        <div class="score-item">
+          <span class="score-label">Streak</span>
+          <span class="score-value" id="complexity-streak" aria-live="polite">0</span>
         </div>
       </aside>
     </section>

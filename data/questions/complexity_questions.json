@@ -1,0 +1,195 @@
+{
+  "metadata": {
+    "title": "Complexity Questions",
+    "description": "Quiz questions that test understanding of time and space complexity",
+    "version": "1.0.0",
+    "questionCount": 25
+  },
+  "complexityGuide": {
+    "O(1)": ["Hash table lookup", "Array index access", "Stack push/pop"],
+    "O(log n)": ["Binary search", "Balanced BST operations", "Heap operations"],
+    "O(n)": ["Linear scan", "Two pointers", "Sliding window", "DFS/BFS", "Union Find (amortized)"],
+    "O(n log n)": ["Sorting", "Heap sort", "Merge intervals"],
+    "O(n²)": ["Nested loops", "Some DP", "Brute force pairs"],
+    "O(n³)": ["Interval DP", "Floyd-Warshall"],
+    "O(2^n)": ["Subsets", "Some backtracking"],
+    "O(n!)": ["Permutations", "Brute force ordering"]
+  },
+  "questions": [
+    {
+      "id": "c1",
+      "question": "What is the time complexity of binary search on a sorted array?",
+      "correctAnswer": "O(log n)",
+      "wrongOptions": ["O(n)", "O(1)", "O(n log n)"],
+      "explanation": "Binary search halves the search space each iteration, giving logarithmic time."
+    },
+    {
+      "id": "c2",
+      "question": "What is the time complexity of finding an element in a hash table (average case)?",
+      "correctAnswer": "O(1)",
+      "wrongOptions": ["O(n)", "O(log n)", "O(n²)"],
+      "explanation": "Hash tables provide constant-time average lookup using hash functions."
+    },
+    {
+      "id": "c3",
+      "question": "What is the time complexity of merge sort?",
+      "correctAnswer": "O(n log n)",
+      "wrongOptions": ["O(n)", "O(n²)", "O(log n)"],
+      "explanation": "Merge sort divides array (log n levels) and merges (n work per level)."
+    },
+    {
+      "id": "c4",
+      "question": "What is the time complexity of BFS/DFS on a graph with V vertices and E edges?",
+      "correctAnswer": "O(V + E)",
+      "wrongOptions": ["O(V × E)", "O(V²)", "O(E log V)"],
+      "explanation": "BFS/DFS visits each vertex once and traverses each edge once."
+    },
+    {
+      "id": "c5",
+      "question": "What is the time complexity of generating all subsets of a set with n elements?",
+      "correctAnswer": "O(2^n)",
+      "wrongOptions": ["O(n²)", "O(n!)", "O(n log n)"],
+      "explanation": "There are 2^n subsets (each element either included or not)."
+    },
+    {
+      "id": "c6",
+      "question": "What is the time complexity of generating all permutations of n elements?",
+      "correctAnswer": "O(n!)",
+      "wrongOptions": ["O(2^n)", "O(n²)", "O(n^n)"],
+      "explanation": "There are n! permutations: n choices for first, n-1 for second, etc."
+    },
+    {
+      "id": "c7",
+      "question": "What is the time complexity of the two-pointer technique on a sorted array?",
+      "correctAnswer": "O(n)",
+      "wrongOptions": ["O(n²)", "O(log n)", "O(n log n)"],
+      "explanation": "Two pointers traverse the array once, each moving at most n times."
+    },
+    {
+      "id": "c8",
+      "question": "What is the time complexity of Dijkstra's algorithm with a min-heap?",
+      "correctAnswer": "O((V + E) log V)",
+      "wrongOptions": ["O(V²)", "O(V + E)", "O(E log E)"],
+      "explanation": "Each vertex extracted once (V log V) and each edge relaxed once (E log V)."
+    },
+    {
+      "id": "c9",
+      "question": "What is the time complexity of the sliding window technique?",
+      "correctAnswer": "O(n)",
+      "wrongOptions": ["O(n²)", "O(n log n)", "O(log n)"],
+      "explanation": "Each element enters and leaves the window at most once."
+    },
+    {
+      "id": "c10",
+      "question": "What is the time complexity of bubble sort in the worst case?",
+      "correctAnswer": "O(n²)",
+      "wrongOptions": ["O(n)", "O(n log n)", "O(log n)"],
+      "explanation": "Bubble sort uses nested loops comparing adjacent elements."
+    },
+    {
+      "id": "c11",
+      "question": "What is the time complexity of accessing an element by index in an array?",
+      "correctAnswer": "O(1)",
+      "wrongOptions": ["O(n)", "O(log n)", "O(n²)"],
+      "explanation": "Arrays provide constant-time random access via memory addressing."
+    },
+    {
+      "id": "c12",
+      "question": "What is the time complexity of inserting into a balanced BST?",
+      "correctAnswer": "O(log n)",
+      "wrongOptions": ["O(1)", "O(n)", "O(n log n)"],
+      "explanation": "Balanced BST has height log n, insertion traverses root to leaf."
+    },
+    {
+      "id": "c13",
+      "question": "What is the time complexity of Union-Find with path compression and union by rank?",
+      "correctAnswer": "O(α(n))",
+      "wrongOptions": ["O(1)", "O(log n)", "O(n)"],
+      "explanation": "α(n) is inverse Ackermann function, effectively constant for practical inputs."
+    },
+    {
+      "id": "c14",
+      "question": "What is the time complexity of Floyd-Warshall all-pairs shortest path?",
+      "correctAnswer": "O(n³)",
+      "wrongOptions": ["O(n²)", "O(n² log n)", "O(n⁴)"],
+      "explanation": "Three nested loops over n vertices each."
+    },
+    {
+      "id": "c15",
+      "question": "What is the time complexity of heap push/pop operations?",
+      "correctAnswer": "O(log n)",
+      "wrongOptions": ["O(1)", "O(n)", "O(n log n)"],
+      "explanation": "Heap operations may need to bubble up/down through log n levels."
+    },
+    {
+      "id": "c16",
+      "question": "What is the time complexity of finding the k-th largest element using a min-heap of size k?",
+      "correctAnswer": "O(n log k)",
+      "wrongOptions": ["O(n log n)", "O(n)", "O(k log n)"],
+      "explanation": "Process n elements, each heap operation takes O(log k)."
+    },
+    {
+      "id": "c17",
+      "question": "What is the time complexity of topological sort using Kahn's algorithm?",
+      "correctAnswer": "O(V + E)",
+      "wrongOptions": ["O(V log V)", "O(V²)", "O(E log V)"],
+      "explanation": "Each vertex and edge processed exactly once."
+    },
+    {
+      "id": "c18",
+      "question": "What is the time complexity of the longest common subsequence (LCS) DP solution?",
+      "correctAnswer": "O(m × n)",
+      "wrongOptions": ["O(m + n)", "O(m × n²)", "O(2^(m+n))"],
+      "explanation": "Fill an m × n DP table, each cell computed in O(1)."
+    },
+    {
+      "id": "c19",
+      "question": "What is the time complexity of Kadane's algorithm for maximum subarray?",
+      "correctAnswer": "O(n)",
+      "wrongOptions": ["O(n²)", "O(n log n)", "O(log n)"],
+      "explanation": "Single pass through the array tracking current and max sum."
+    },
+    {
+      "id": "c20",
+      "question": "What is the space complexity of recursive DFS on a tree with height h?",
+      "correctAnswer": "O(h)",
+      "wrongOptions": ["O(1)", "O(n)", "O(log n)"],
+      "explanation": "Call stack depth equals tree height; worst case O(n) for skewed tree."
+    },
+    {
+      "id": "c21",
+      "question": "What is the time complexity of counting sort for n integers in range [0, k]?",
+      "correctAnswer": "O(n + k)",
+      "wrongOptions": ["O(n log n)", "O(n × k)", "O(k log k)"],
+      "explanation": "Count occurrences O(n), then output sorted elements O(n + k)."
+    },
+    {
+      "id": "c22",
+      "question": "What is the time complexity of checking if a string is a palindrome?",
+      "correctAnswer": "O(n)",
+      "wrongOptions": ["O(n²)", "O(log n)", "O(1)"],
+      "explanation": "Compare characters from both ends, traversing at most n/2 pairs."
+    },
+    {
+      "id": "c23",
+      "question": "What is the time complexity of matrix multiplication for two n × n matrices?",
+      "correctAnswer": "O(n³)",
+      "wrongOptions": ["O(n²)", "O(n² log n)", "O(n⁴)"],
+      "explanation": "Standard algorithm: n² output cells, each requiring n multiplications."
+    },
+    {
+      "id": "c24",
+      "question": "What is the time complexity of prefix sum array construction?",
+      "correctAnswer": "O(n)",
+      "wrongOptions": ["O(n²)", "O(1)", "O(log n)"],
+      "explanation": "Single pass: prefix[i] = prefix[i-1] + arr[i]."
+    },
+    {
+      "id": "c25",
+      "question": "What is the time complexity of interval DP (e.g., burst balloons)?",
+      "correctAnswer": "O(n³)",
+      "wrongOptions": ["O(n²)", "O(2^n)", "O(n² log n)"],
+      "explanation": "O(n²) subproblems, each taking O(n) to compute the optimal split."
+    }
+  ]
+}

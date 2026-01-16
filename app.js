@@ -17,6 +17,7 @@ let signalData = null;
 let patternData = null;
 let scenarioData = null;
 let flowchartData = null;
+let complexityData = null;
 
 // Algorithm display names (populated from flowchart data)
 let algorithmNames = {};
@@ -43,6 +44,13 @@ const gameState = {
     correct: 0,
     answered: false
   },
+  complexity: {
+    questions: [],
+    currentIndex: 0,
+    score: 0,
+    streak: 0,
+    answered: false
+  },
   stats: {
     gamesPlayed: 0,
     bestStreak: 0,
@@ -58,11 +66,12 @@ const gameState = {
 async function init() {
   // Load all data
   try {
-    [signalData, patternData, scenarioData, flowchartData] = await Promise.all([
+    [signalData, patternData, scenarioData, flowchartData, complexityData] = await Promise.all([
       loadJSON('./data/questions/signal_questions.json'),
       loadJSON('./data/questions/pattern_recognition_cards.json'),
       loadJSON('./data/questions/game_scenarios.json'),
-      loadJSON('./data/algorithm_decision_flowchart.json')
+      loadJSON('./data/algorithm_decision_flowchart.json'),
+      loadJSON('./data/questions/complexity_questions.json')
     ]);
     
     // Build algorithm names from flowchart data
@@ -99,6 +108,8 @@ function updateMenuCounts() {
     `${patternData.cards.length} Patterns`;
   document.getElementById('scenario-count').textContent = 
     `${scenarioData.scenarios.length} Scenarios`;
+  document.getElementById('complexity-count').textContent = 
+    `${complexityData.questions.length} Questions`;
   
   // Update pattern instruction count
   document.getElementById('pattern-instruction-count').textContent = 
@@ -156,6 +167,9 @@ function setupEventListeners() {
   document.getElementById('scenario-next').addEventListener('click', nextScenario);
   document.getElementById('hints-toggle').addEventListener('click', toggleHints);
   
+  // Complexity Quiz
+  document.getElementById('complexity-next').addEventListener('click', nextComplexityQuestion);
+  
   // Results
   document.getElementById('play-again').addEventListener('click', playAgain);
   document.querySelectorAll('[data-view="homepage"]').forEach(btn => {
@@ -188,6 +202,10 @@ function startGame(game) {
     case 'scenario':
       initScenarioQuiz();
       showView('scenario-quiz');
+      break;
+    case 'complexity':
+      initComplexityQuiz();
+      showView('complexity-quiz');
       break;
   }
 }
@@ -575,6 +593,137 @@ function finishScenarioQuiz() {
     correct: state.correct,
     total: state.scenarios.length,
     gameType: 'scenario'
+  });
+}
+
+// ============================================
+// COMPLEXITY QUIZ
+// ============================================
+
+function initComplexityQuiz() {
+  // Shuffle questions
+  gameState.complexity.questions = shuffleArray([...complexityData.questions]);
+  gameState.complexity.currentIndex = 0;
+  gameState.complexity.score = 0;
+  gameState.complexity.streak = 0;
+  gameState.complexity.answered = false;
+  
+  document.getElementById('complexity-total').textContent = gameState.complexity.questions.length;
+  updateComplexityScore();
+  renderComplexityQuestion();
+}
+
+function renderComplexityQuestion() {
+  const state = gameState.complexity;
+  const question = state.questions[state.currentIndex];
+  
+  // Update progress
+  document.getElementById('complexity-current').textContent = state.currentIndex + 1;
+  const progress = ((state.currentIndex) / state.questions.length) * 100;
+  document.getElementById('complexity-progress').style.width = `${progress}%`;
+  
+  // Render question
+  document.getElementById('complexity-question').textContent = question.question;
+  
+  // Create options (1 correct + 3 wrong, shuffled)
+  const options = shuffleArray([
+    { answer: question.correctAnswer, isCorrect: true },
+    ...question.wrongOptions.map(w => ({ answer: w, isCorrect: false }))
+  ]);
+  
+  const optionsContainer = document.getElementById('complexity-options');
+  optionsContainer.innerHTML = '';
+  
+  const letters = ['A', 'B', 'C', 'D'];
+  options.forEach((option, index) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `
+      <span class="option-letter">${letters[index]}</span>
+      <span class="option-text">${option.answer}</span>
+    `;
+    btn.addEventListener('click', () => selectComplexityAnswer(btn, option, question));
+    optionsContainer.appendChild(btn);
+  });
+  
+  // Hide feedback and next button
+  document.getElementById('complexity-feedback').classList.add('hidden');
+  document.getElementById('complexity-next').classList.add('hidden');
+  state.answered = false;
+}
+
+function selectComplexityAnswer(btn, option, question) {
+  const state = gameState.complexity;
+  if (state.answered) return;
+  state.answered = true;
+  
+  // Disable all buttons
+  document.querySelectorAll('#complexity-options .option-btn').forEach(b => {
+    b.disabled = true;
+  });
+  
+  // Show correct/wrong
+  const feedbackEl = document.getElementById('complexity-feedback');
+  feedbackEl.classList.remove('hidden', 'correct', 'wrong');
+  
+  if (option.isCorrect) {
+    btn.classList.add('correct');
+    feedbackEl.classList.add('correct');
+    feedbackEl.querySelector('.feedback-icon').textContent = '✅';
+    feedbackEl.querySelector('.feedback-text').textContent = 'Correct!';
+    state.score += 10;
+    state.streak += 1;
+    
+    if (state.streak > gameState.stats.bestStreak) {
+      gameState.stats.bestStreak = state.streak;
+    }
+  } else {
+    btn.classList.add('wrong');
+    feedbackEl.classList.add('wrong');
+    feedbackEl.querySelector('.feedback-icon').textContent = '❌';
+    feedbackEl.querySelector('.feedback-text').textContent = `Wrong! The answer is ${question.correctAnswer}`;
+    state.streak = 0;
+    
+    // Highlight correct answer
+    document.querySelectorAll('#complexity-options .option-btn').forEach(b => {
+      if (b.querySelector('.option-text').textContent === question.correctAnswer) {
+        b.classList.add('correct');
+      }
+    });
+  }
+  
+  feedbackEl.querySelector('.feedback-explanation').textContent = question.explanation;
+  updateComplexityScore();
+  
+  // Show next button or finish
+  if (state.currentIndex < state.questions.length - 1) {
+    document.getElementById('complexity-next').classList.remove('hidden');
+  } else {
+    setTimeout(() => finishComplexityQuiz(), 1500);
+  }
+}
+
+function nextComplexityQuestion() {
+  gameState.complexity.currentIndex++;
+  renderComplexityQuestion();
+}
+
+function updateComplexityScore() {
+  document.getElementById('complexity-score').textContent = gameState.complexity.score;
+  document.getElementById('complexity-streak').textContent = gameState.complexity.streak;
+}
+
+function finishComplexityQuiz() {
+  const state = gameState.complexity;
+  gameState.stats.gamesPlayed++;
+  gameState.stats.totalPoints += state.score;
+  saveStats();
+  
+  showResults({
+    score: state.score,
+    correct: Math.floor(state.score / 10),
+    total: state.questions.length,
+    gameType: 'complexity'
   });
 }
 
