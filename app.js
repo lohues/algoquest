@@ -86,10 +86,157 @@ async function init() {
     // Setup event listeners
     setupEventListeners();
     
+    // Check for saved session and offer to resume
+    const session = loadSession();
+    if (session && hasActiveSession()) {
+      showResumePrompt(session);
+    }
+    
     console.log('AlgoQuest initialized successfully!');
   } catch (error) {
     console.error('Failed to load game data:', error);
   }
+}
+
+function showResumePrompt(session) {
+  // Create a modal to ask user if they want to resume
+  const gameNames = {
+    'signal-quiz': 'Signal Quiz',
+    'pattern-quiz': 'Pattern Flashcards',
+    'scenario-quiz': 'Scenario Quiz',
+    'complexity-quiz': 'Complexity Quiz'
+  };
+  
+  const gameName = gameNames[session.currentView] || 'Quiz';
+  
+  // Get progress info
+  let progressInfo = '';
+  switch (session.currentView) {
+    case 'signal-quiz':
+      progressInfo = `Question ${session.signal.currentIndex + 1} of ${session.signal.questions.length}`;
+      break;
+    case 'pattern-quiz':
+      progressInfo = `Card ${session.pattern.currentIndex + 1} of ${session.pattern.cards.length}`;
+      break;
+    case 'scenario-quiz':
+      progressInfo = `Scenario ${session.scenario.currentIndex + 1} of ${session.scenario.scenarios.length}`;
+      break;
+    case 'complexity-quiz':
+      progressInfo = `Question ${session.complexity.currentIndex + 1} of ${session.complexity.questions.length}`;
+      break;
+  }
+  
+  const modal = document.createElement('div');
+  modal.className = 'resume-modal';
+  modal.innerHTML = `
+    <div class="resume-modal-content">
+      <div class="resume-icon">🔄</div>
+      <h2>Resume Session?</h2>
+      <p>You have an unfinished <strong>${gameName}</strong></p>
+      <p class="resume-progress">${progressInfo}</p>
+      <div class="resume-buttons">
+        <button class="resume-btn resume-yes">Resume</button>
+        <button class="resume-btn resume-no">Start Fresh</button>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(modal);
+  
+  // Add styles for modal
+  if (!document.getElementById('resume-modal-styles')) {
+    const styles = document.createElement('style');
+    styles.id = 'resume-modal-styles';
+    styles.textContent = `
+      .resume-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        animation: fadeIn 0.3s ease;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .resume-modal-content {
+        background: var(--card-bg, #1e1e2e);
+        padding: 2rem;
+        border-radius: 1rem;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        animation: slideUp 0.3s ease;
+      }
+      @keyframes slideUp {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      .resume-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+      .resume-modal-content h2 {
+        margin: 0 0 0.5rem;
+        color: var(--text-primary, #fff);
+      }
+      .resume-modal-content p {
+        color: var(--text-secondary, #a0a0a0);
+        margin: 0.5rem 0;
+      }
+      .resume-progress {
+        font-size: 0.9rem;
+        color: var(--accent, #6366f1) !important;
+        font-weight: 500;
+      }
+      .resume-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        justify-content: center;
+      }
+      .resume-btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .resume-btn:hover {
+        transform: translateY(-2px);
+      }
+      .resume-yes {
+        background: var(--accent, #6366f1);
+        color: white;
+      }
+      .resume-no {
+        background: var(--card-bg-hover, #2a2a3e);
+        color: var(--text-primary, #fff);
+        border: 1px solid var(--border, #3a3a4e);
+      }
+    `;
+    document.head.appendChild(styles);
+  }
+  
+  // Handle button clicks
+  modal.querySelector('.resume-yes').addEventListener('click', () => {
+    modal.remove();
+    restoreSession(session);
+  });
+  
+  modal.querySelector('.resume-no').addEventListener('click', () => {
+    modal.remove();
+    clearSession();
+  });
 }
 
 function buildAlgorithmNames() {
@@ -126,6 +273,102 @@ function loadStats() {
 
 function saveStats() {
   localStorage.setItem('algoquest-stats', JSON.stringify(gameState.stats));
+}
+
+// ============================================
+// SESSION PERSISTENCE
+// ============================================
+
+function saveSession() {
+  const session = {
+    currentView: gameState.currentView,
+    signal: gameState.signal,
+    pattern: gameState.pattern,
+    scenario: gameState.scenario,
+    complexity: gameState.complexity,
+    timestamp: Date.now()
+  };
+  localStorage.setItem('algoquest-session', JSON.stringify(session));
+}
+
+function loadSession() {
+  const saved = localStorage.getItem('algoquest-session');
+  if (!saved) return null;
+  
+  try {
+    const session = JSON.parse(saved);
+    // Session expires after 24 hours
+    if (Date.now() - session.timestamp > 24 * 60 * 60 * 1000) {
+      clearSession();
+      return null;
+    }
+    return session;
+  } catch (e) {
+    clearSession();
+    return null;
+  }
+}
+
+function clearSession() {
+  localStorage.removeItem('algoquest-session');
+}
+
+function restoreSession(session) {
+  // Restore game state
+  gameState.currentView = session.currentView;
+  Object.assign(gameState.signal, session.signal);
+  Object.assign(gameState.pattern, session.pattern);
+  Object.assign(gameState.scenario, session.scenario);
+  Object.assign(gameState.complexity, session.complexity);
+  
+  // Restore the appropriate view and render
+  switch (session.currentView) {
+    case 'signal-quiz':
+      document.getElementById('signal-total').textContent = gameState.signal.questions.length;
+      updateSignalScore();
+      renderSignalQuestion();
+      // Don't use showView here as it would clear the session
+      document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
+      document.getElementById('signal-quiz').classList.add('active');
+      break;
+    case 'pattern-quiz':
+      document.getElementById('pattern-total').textContent = gameState.pattern.cards.length;
+      renderPatternDots();
+      renderPatternCard();
+      // Restore flip state
+      if (gameState.pattern.isFlipped) {
+        document.getElementById('flashcard').classList.add('flipped');
+      }
+      document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
+      document.getElementById('pattern-quiz').classList.add('active');
+      break;
+    case 'scenario-quiz':
+      document.getElementById('scenario-total').textContent = gameState.scenario.scenarios.length;
+      updateScenarioScore();
+      renderScenario();
+      document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
+      document.getElementById('scenario-quiz').classList.add('active');
+      break;
+    case 'complexity-quiz':
+      document.getElementById('complexity-total').textContent = gameState.complexity.questions.length;
+      updateComplexityScore();
+      renderComplexityQuestion();
+      document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
+      document.getElementById('complexity-quiz').classList.add('active');
+      break;
+    default:
+      showView('homepage');
+      clearSession();
+  }
+}
+
+function hasActiveSession() {
+  const session = loadSession();
+  if (!session) return false;
+  
+  // Check if there's an active quiz (not on homepage or results)
+  const activeViews = ['signal-quiz', 'pattern-quiz', 'scenario-quiz', 'complexity-quiz'];
+  return activeViews.includes(session.currentView);
 }
 
 function updateStatsDisplay() {
@@ -187,6 +430,11 @@ function showView(viewId) {
   });
   document.getElementById(viewId).classList.add('active');
   gameState.currentView = viewId;
+  
+  // Clear session when returning to homepage or showing results
+  if (viewId === 'homepage' || viewId === 'results') {
+    clearSession();
+  }
 }
 
 function startGame(game) {
@@ -225,6 +473,7 @@ function initSignalQuiz() {
   document.getElementById('signal-total').textContent = gameState.signal.questions.length;
   updateSignalScore();
   renderSignalQuestion();
+  saveSession();
 }
 
 function renderSignalQuestion() {
@@ -308,6 +557,7 @@ function selectSignalAnswer(btn, option, question) {
   
   feedbackEl.querySelector('.feedback-explanation').textContent = question.explanation;
   updateSignalScore();
+  saveSession();
   
   // Show next button or finish
   if (state.currentIndex < state.questions.length - 1) {
@@ -319,7 +569,9 @@ function selectSignalAnswer(btn, option, question) {
 
 function nextSignalQuestion() {
   gameState.signal.currentIndex++;
+  gameState.signal.answered = false;
   renderSignalQuestion();
+  saveSession();
 }
 
 function updateSignalScore() {
@@ -353,6 +605,7 @@ function initPatternQuiz() {
   document.getElementById('pattern-total').textContent = gameState.pattern.cards.length;
   renderPatternDots();
   renderPatternCard();
+  saveSession();
 }
 
 function renderPatternCard() {
@@ -389,12 +642,14 @@ function flipCard() {
   const flashcard = document.getElementById('flashcard');
   flashcard.classList.toggle('flipped');
   gameState.pattern.isFlipped = !gameState.pattern.isFlipped;
+  saveSession();
 }
 
 function prevPattern() {
   if (gameState.pattern.currentIndex > 0) {
     gameState.pattern.currentIndex--;
     renderPatternCard();
+    saveSession();
   }
 }
 
@@ -402,6 +657,7 @@ function nextPattern() {
   if (gameState.pattern.currentIndex < gameState.pattern.cards.length - 1) {
     gameState.pattern.currentIndex++;
     renderPatternCard();
+    saveSession();
   }
 }
 
@@ -410,6 +666,7 @@ function shufflePatterns() {
   gameState.pattern.currentIndex = 0;
   renderPatternDots();
   renderPatternCard();
+  saveSession();
   
   // Visual feedback
   document.getElementById('pattern-shuffle').textContent = '✓ Shuffled!';
@@ -431,6 +688,7 @@ function renderPatternDots() {
     dot.addEventListener('click', () => {
       gameState.pattern.currentIndex = index;
       renderPatternCard();
+      saveSession();
     });
     dotsContainer.appendChild(dot);
   });
@@ -457,6 +715,7 @@ function initScenarioQuiz() {
   document.getElementById('scenario-total').textContent = gameState.scenario.scenarios.length;
   updateScenarioScore();
   renderScenario();
+  saveSession();
 }
 
 function renderScenario() {
@@ -558,6 +817,7 @@ function selectScenarioAnswer(btn, option, scenario) {
   }
   
   updateScenarioScore();
+  saveSession();
   
   // Show next button or finish
   if (state.currentIndex < state.scenarios.length - 1) {
@@ -569,7 +829,9 @@ function selectScenarioAnswer(btn, option, scenario) {
 
 function nextScenario() {
   gameState.scenario.currentIndex++;
+  gameState.scenario.answered = false;
   renderScenario();
+  saveSession();
 }
 
 function updateScenarioScore() {
@@ -611,6 +873,7 @@ function initComplexityQuiz() {
   document.getElementById('complexity-total').textContent = gameState.complexity.questions.length;
   updateComplexityScore();
   renderComplexityQuestion();
+  saveSession();
 }
 
 function renderComplexityQuestion() {
@@ -694,6 +957,7 @@ function selectComplexityAnswer(btn, option, question) {
   
   feedbackEl.querySelector('.feedback-explanation').textContent = question.explanation;
   updateComplexityScore();
+  saveSession();
   
   // Show next button or finish
   if (state.currentIndex < state.questions.length - 1) {
@@ -705,7 +969,9 @@ function selectComplexityAnswer(btn, option, question) {
 
 function nextComplexityQuestion() {
   gameState.complexity.currentIndex++;
+  gameState.complexity.answered = false;
   renderComplexityQuestion();
+  saveSession();
 }
 
 function updateComplexityScore() {
